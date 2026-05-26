@@ -1,0 +1,3354 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sapitos la secuela: accesorios handmade, personalizados y regalos con historia." />
+    <title>Sapitos la secuela | Tienda handmade</title>
+    <style>
+      :root {
+        --ink: #16110f;
+        --muted: #665e55;
+        --paper: #fff9ea;
+        --cream: #fffdf4;
+        --green: #b8db74;
+        --acid: #91ff57;
+        --mint: #95ead9;
+        --pink: #ff72bd;
+        --hot-pink: #ff49aa;
+        --yellow: #fff27a;
+        --blue: #8dd8ff;
+        --peach: #ffc5a8;
+        --line: 3px solid var(--ink);
+        --shadow: 6px 6px 0 var(--ink);
+        --shadow-soft: 0 18px 40px rgba(22, 17, 15, 0.14);
+        --radius: 22px;
+        font-family: Inter, ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 8%, rgba(255, 114, 189, .2), transparent 24rem),
+          radial-gradient(circle at 86% 12%, rgba(145, 255, 87, .22), transparent 22rem),
+          linear-gradient(180deg, var(--cream), #fff7df 45%, #fafff3);
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(90deg, rgba(22, 17, 15, .024) 1px, transparent 1px),
+          linear-gradient(rgba(22, 17, 15, .024) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,.78), transparent 70%);
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      button, input, select, textarea { font: inherit; }
+      button, a, input, select, textarea { outline-offset: 4px; }
+      :focus-visible { outline: 3px solid var(--hot-pink); }
+
+      .announcement {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        padding: 7px 16px;
+        border-bottom: var(--line);
+        background: var(--ink);
+        color: var(--paper);
+        text-align: center;
+        font-size: .78rem;
+        font-weight: 900;
+        letter-spacing: .03em;
+      }
+
+      .header {
+        position: sticky;
+        top: 34px;
+        z-index: 55;
+        display: grid;
+        grid-template-columns: minmax(170px, auto) minmax(0, 1fr) auto;
+        align-items: center;
+        gap: clamp(12px, 2.2vw, 28px);
+        padding: 9px clamp(14px, 3.4vw, 42px);
+        border-bottom: var(--line);
+        background: rgba(255, 249, 234, .92);
+        backdrop-filter: blur(16px);
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        width: fit-content;
+        font-weight: 950;
+        line-height: .92;
+      }
+      .brand span {
+        display: block;
+        max-width: 112px;
+        font-size: clamp(.98rem, 1.25vw, 1.22rem);
+      }
+      .logo {
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        object-fit: cover;
+        border: 2px solid var(--ink);
+        border-radius: 14px;
+        background: var(--green);
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+      .nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        min-width: 0;
+        padding: 5px;
+        border: 2px solid rgba(22, 17, 15, .12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .48);
+        font-size: clamp(.78rem, .9vw, .9rem);
+        font-weight: 950;
+      }
+      .nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 34px;
+        padding: 7px 11px;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        white-space: nowrap;
+        transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+      }
+      .nav a:hover {
+        border-color: rgba(22, 17, 15, .55);
+        background: white;
+        transform: translateY(-1px);
+      }
+      .nav a.active {
+        border-color: var(--ink);
+        background: var(--yellow);
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+      .actions { display: flex; align-items: center; justify-content: end; gap: 9px; }
+      .search-top {
+        width: clamp(150px, 15vw, 230px);
+        min-height: 36px;
+        padding: 8px 14px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: white;
+        font-size: .86rem;
+        box-shadow: 3px 3px 0 rgba(22, 17, 15, .16);
+      }
+      .icon-button, .button, .chip, .qty button, .close, .remove, .menu-toggle {
+        border: var(--line);
+        background: white;
+        color: var(--ink);
+        font-weight: 950;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+      }
+      .icon-button, .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 38px;
+        padding: 0 13px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .icon-button strong {
+        display: grid;
+        place-items: center;
+        min-width: 24px;
+        height: 24px;
+        padding: 0 6px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--acid);
+        line-height: 1;
+      }
+      .icon-button:hover, .button:hover, .chip:hover, .qty button:hover, .close:hover, .remove:hover, .menu-toggle:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+      .menu-toggle { display: none; }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 10px 16px;
+        border-radius: 999px;
+      }
+      .button.dark { background: var(--ink); color: var(--paper); }
+      .button.pink { background: var(--pink); color: white; }
+      .button.ghost { background: var(--paper); }
+      .button:disabled { opacity: .48; cursor: not-allowed; transform: none; }
+
+      .hero {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(280px, .82fr);
+        gap: clamp(26px, 5vw, 70px);
+        align-items: center;
+        padding: clamp(34px, 5vw, 66px) clamp(18px, 5vw, 76px) 46px;
+        border-bottom: var(--line);
+        overflow: hidden;
+      }
+      .page { display: none; }
+      .page.active { display: block; }
+      .page:not(.active) { display: none !important; }
+      .custom-section.page.active, .checkout-section.page.active, .about-section.page.active { display: grid; }
+      .page-shell {
+        min-height: calc(100vh - 126px);
+        animation: pageIn .22s ease;
+      }
+      .home-page.active { display: block; }
+      @keyframes pageIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .page-intro {
+        padding: 34px clamp(18px, 5vw, 76px) 0;
+      }
+      .page-intro-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        padding: 22px clamp(16px, 4vw, 34px);
+        border: var(--line);
+        border-radius: 28px;
+        background: var(--mint);
+        box-shadow: var(--shadow);
+      }
+      .page-intro-card h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4.5vw, 4.25rem);
+      }
+      .page-intro-card p {
+        max-width: 520px;
+        margin: 0;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: -12vw;
+        bottom: -14vw;
+        width: min(30vw, 300px);
+        aspect-ratio: 1;
+        border: 2px solid rgba(22, 17, 15, .35);
+        border-radius: 44% 56% 48% 52%;
+        background: var(--mint);
+        opacity: .28;
+        transform: rotate(14deg);
+      }
+      .eyebrow {
+        margin: 0 0 12px;
+        text-transform: uppercase;
+        font-size: .76rem;
+        font-weight: 950;
+        letter-spacing: .14em;
+      }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 {
+        max-width: 820px;
+        margin-bottom: 16px;
+        font-size: clamp(2.45rem, 5.1vw, 4.9rem);
+        line-height: .94;
+        letter-spacing: 0;
+      }
+      h2 { margin-bottom: 14px; font-size: clamp(1.9rem, 3.8vw, 3.8rem); line-height: .98; }
+      h3 { margin-bottom: 8px; }
+      .lead { max-width: 620px; color: var(--muted); font-size: 1.04rem; line-height: 1.58; }
+      .hero-cta {
+        display: grid;
+        gap: 12px;
+        max-width: 610px;
+        margin-top: 24px;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: minmax(190px, .95fr) minmax(230px, 1.05fr);
+        gap: 12px;
+        align-items: stretch;
+      }
+      .hero-actions .button {
+        width: 100%;
+        min-height: 52px;
+        padding: 12px 20px;
+        font-size: 1rem;
+      }
+      .hero-actions .button.dark {
+        position: relative;
+        isolation: isolate;
+        min-height: 56px;
+        font-size: 1.08rem;
+        box-shadow: 7px 7px 0 var(--ink);
+      }
+      .hero-actions .button.pink {
+        background: #fff9ea;
+        color: var(--ink);
+      }
+      .hero-actions .button.dark::after {
+        content: "";
+        position: absolute;
+        inset: 7px -10px auto auto;
+        width: 18px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--yellow);
+        z-index: -1;
+      }
+      .trust-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px 14px;
+        align-items: center;
+        color: var(--muted);
+        font-weight: 900;
+        font-size: .84rem;
+      }
+      .trust-strip span {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+      .trust-strip span::before {
+        content: "";
+        width: 7px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--acid);
+      }
+      .sticker {
+        position: absolute;
+        z-index: 2;
+        padding: 8px 12px;
+        border: var(--line);
+        border-radius: 999px;
+        background: var(--yellow);
+        font-size: .84rem;
+        font-weight: 950;
+        box-shadow: var(--shadow);
+        animation: bob 4s ease-in-out infinite;
+      }
+      .sticker.one { left: 4vw; top: 22px; transform: rotate(-7deg); }
+      .sticker.two { right: 8vw; top: 16%; background: var(--pink); color: white; transform: rotate(8deg); animation-delay: .8s; }
+      .sticker.inline {
+        position: relative;
+        inset: auto;
+        display: inline-flex;
+        width: fit-content;
+        margin: 0 0 18px;
+        transform: rotate(-5deg);
+      }
+      @keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+      .hero-stage {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        min-height: 410px;
+        transform: translateY(-16px);
+      }
+      .hero-logo-card {
+        width: min(82%, 430px);
+        border: var(--line);
+        border-radius: 34px;
+        background: var(--paper);
+        box-shadow: 14px 14px 0 var(--ink);
+        transform: rotate(2deg);
+        overflow: hidden;
+      }
+      .hero-logo-card img { aspect-ratio: 1; object-fit: cover; }
+      .hero-product-card {
+        position: absolute;
+        right: 10px;
+        bottom: 32px;
+        display: grid;
+        place-items: center;
+        width: 112px;
+        padding: 10px;
+        border: var(--line);
+        border-radius: 24px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+        transform: rotate(-4deg);
+      }
+      .hero-product-card img {
+        width: 88px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border: 2px solid var(--ink);
+        border-radius: 18px;
+        background: white;
+      }
+      .hero-dots {
+        position: absolute;
+        right: 18px;
+        top: 78px;
+        display: grid;
+        grid-template-columns: repeat(2, 16px);
+        gap: 8px;
+        transform: rotate(8deg);
+      }
+      .hero-dots span {
+        width: 16px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--yellow);
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+      .hero-dots span:nth-child(2) { background: var(--pink); }
+      .hero-dots span:nth-child(3) { background: var(--acid); }
+      .hero-dots span:nth-child(4) { background: var(--blue); }
+      .hero-badge {
+        position: absolute;
+        left: 10px;
+        bottom: 74px;
+        max-width: 180px;
+        padding: 12px;
+        border: var(--line);
+        border-radius: 20px;
+        background: var(--acid);
+        font-weight: 950;
+        box-shadow: var(--shadow);
+        transform: rotate(5deg);
+      }
+      .hero-mini-cards {
+        position: absolute;
+        z-index: 2;
+        right: clamp(18px, 4vw, 62px);
+        bottom: 18px;
+        display: flex;
+        gap: 8px;
+      }
+      .hero-mini-cards span {
+        padding: 7px 10px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--paper);
+        box-shadow: 3px 3px 0 var(--ink);
+        font-size: .72rem;
+        font-weight: 950;
+        white-space: nowrap;
+      }
+      .hero-mini-cards span:nth-child(2) { background: var(--yellow); }
+      .hero-mini-cards span:nth-child(3) { background: var(--pink); color: white; }
+
+      .section {
+        padding: 58px clamp(18px, 5vw, 76px);
+        scroll-margin-top: 150px;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+      .section-note { max-width: 520px; color: var(--muted); line-height: 1.55; }
+
+      .sapitos-intro {
+        position: relative;
+        overflow: hidden;
+      }
+      .sapitos-intro::before {
+        content: "";
+        position: absolute;
+        right: clamp(18px, 6vw, 92px);
+        top: 34px;
+        width: clamp(120px, 17vw, 230px);
+        aspect-ratio: 1;
+        border: 3px solid rgba(22, 17, 15, .18);
+        border-radius: 43% 57% 48% 52%;
+        background: rgba(150, 255, 91, .24);
+        pointer-events: none;
+      }
+      .reel-gallery {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: clamp(205px, 18vw, 265px);
+        grid-template-columns: clamp(260px, 22vw, 330px);
+        gap: 16px;
+        align-items: stretch;
+        margin: 28px 0 34px;
+        padding: 4px 4px 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--ink) transparent;
+      }
+      .reel-gallery::-webkit-scrollbar { height: 10px; }
+      .reel-gallery::-webkit-scrollbar-track {
+        border: 2px solid rgba(22, 17, 15, .18);
+        border-radius: 999px;
+        background: rgba(255, 249, 234, .72);
+      }
+      .reel-gallery::-webkit-scrollbar-thumb {
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--pink);
+      }
+      .reel-copy-card,
+      .reel-card {
+        border: var(--line);
+        border-radius: 26px;
+        background: var(--paper);
+        box-shadow: var(--shadow-soft);
+      }
+      .reel-copy-card {
+        scroll-snap-align: start;
+        display: grid;
+        grid-template-rows: auto minmax(130px, 1fr) auto;
+        gap: 14px;
+        padding: 20px;
+        background:
+          radial-gradient(circle at 18% 18%, rgba(255, 114, 189, .22), transparent 36%),
+          linear-gradient(135deg, var(--yellow), var(--paper) 70%);
+      }
+      .reel-copy-top {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+      .reel-copy-card h3 {
+        max-width: 100%;
+        margin: 0;
+        font-size: clamp(1.32rem, 1.7vw, 1.72rem);
+        line-height: 1.08;
+        overflow-wrap: break-word;
+      }
+      .reel-copy-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .reel-badge {
+        width: fit-content;
+        padding: 7px 11px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--pink);
+        color: white;
+        font-size: .75rem;
+        font-weight: 950;
+        box-shadow: 3px 3px 0 var(--ink);
+        transform: rotate(-3deg);
+      }
+      .reel-frog {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 136px;
+        overflow: visible;
+      }
+      .reel-frog::before {
+        content: "";
+        position: absolute;
+        width: 78%;
+        aspect-ratio: 1.45;
+        border-radius: 50%;
+        background: rgba(150, 255, 91, .24);
+        filter: blur(.2px);
+      }
+      .reel-frog img {
+        position: relative;
+        z-index: 1;
+        width: min(82%, 190px);
+        max-height: 180px;
+        object-fit: contain;
+        filter: drop-shadow(5px 5px 0 rgba(22, 17, 15, .16));
+        transform-origin: 28% 44%;
+        animation: frogHello 1.65s ease-in-out infinite;
+      }
+      @keyframes frogHello {
+        0%, 100% { transform: rotate(-2deg) translateY(0); }
+        45% { transform: rotate(5deg) translateY(-4px); }
+        70% { transform: rotate(-5deg) translateY(0); }
+      }
+      .reel-card {
+        position: relative;
+        scroll-snap-align: start;
+        overflow: hidden;
+        aspect-ratio: 9 / 16;
+        min-height: 310px;
+        background: var(--cream);
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .reel-card:nth-child(odd) { transform: rotate(-1.2deg); }
+      .reel-card:nth-child(even) { transform: rotate(1.2deg); }
+      .reel-card:hover {
+        transform: translateY(-6px) rotate(0deg);
+        box-shadow: var(--shadow);
+      }
+      .reel-card video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .reel-card span {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 8px 10px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: rgba(255, 249, 234, .92);
+        font-size: .78rem;
+        font-weight: 950;
+        text-align: center;
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+      .category-kicker {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 18px;
+        margin: 8px 0 18px;
+      }
+      .category-kicker h3 {
+        font-size: clamp(1.3rem, 2.4vw, 2rem);
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(132px, 1fr));
+        gap: 14px;
+      }
+      .category-card, .product-card, .filters, .form-card, .summary, .drawer, .modal, .value-card, .faq details, .policy {
+        border: var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        box-shadow: var(--shadow-soft);
+      }
+      .category-card {
+        position: relative;
+        min-height: 100%;
+        padding: 11px;
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .category-card::after {
+        content: "";
+        position: absolute;
+        right: -18px;
+        top: -18px;
+        width: 56px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--pink);
+        opacity: .28;
+      }
+      .category-card:hover { transform: translateY(-5px) rotate(-1deg); box-shadow: var(--shadow); }
+      .category-card img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border: var(--line);
+        border-radius: 18px;
+        background: white;
+      }
+      .category-card h3 { margin: 10px 0 4px; font-size: 1rem; }
+      .category-card p { margin-bottom: 8px; color: var(--muted); font-size: .84rem; line-height: 1.35; }
+      .mini-link { font-weight: 950; border-bottom: 3px solid var(--hot-pink); }
+
+      .drop-band {
+        margin: 0 clamp(18px, 5vw, 76px);
+        padding: 22px clamp(16px, 4vw, 34px);
+        border: var(--line);
+        border-radius: 28px;
+        background: var(--yellow);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .drop-band h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 3.1rem); }
+
+      .wave-divider {
+        position: relative;
+        height: 72px;
+        overflow: hidden;
+        margin-top: 44px;
+      }
+      .wave-divider::before,
+      .wave-divider::after {
+        content: "";
+        position: absolute;
+        left: -12%;
+        width: 124%;
+        height: 96px;
+        border: var(--line);
+        border-radius: 50% 48% 0 0 / 76% 70% 0 0;
+        background: var(--pink);
+        transform: translateY(22px) rotate(-1deg);
+        animation: waveDrift 9s ease-in-out infinite alternate;
+      }
+      .wave-divider::after {
+        top: 18px;
+        background: var(--yellow);
+        opacity: .92;
+        transform: translateY(28px) rotate(1deg);
+        animation-duration: 12s;
+      }
+      @keyframes waveDrift {
+        from { translate: -18px 0; }
+        to { translate: 18px 0; }
+      }
+
+      .home-editorial {
+        position: relative;
+        padding: 54px clamp(18px, 5vw, 76px) 68px;
+        border-block: var(--line);
+        background:
+          radial-gradient(circle at 12% 18%, rgba(255, 114, 189, .22), transparent 18rem),
+          radial-gradient(circle at 86% 68%, rgba(145, 255, 87, .24), transparent 20rem),
+          var(--paper);
+        overflow: hidden;
+      }
+      .home-editorial::before {
+        content: "sapitos drop";
+        position: absolute;
+        right: clamp(18px, 6vw, 92px);
+        top: 22px;
+        padding: 8px 14px;
+        border: var(--line);
+        border-radius: 999px;
+        background: var(--acid);
+        box-shadow: var(--shadow);
+        font-weight: 950;
+        transform: rotate(6deg);
+        animation: bob 4.5s ease-in-out infinite;
+      }
+      .featured-row {
+        display: grid;
+        grid-template-columns: 1.35fr .85fr .85fr;
+        gap: clamp(14px, 2vw, 24px);
+        align-items: stretch;
+      }
+      .feature-card {
+        position: relative;
+        min-height: 330px;
+        display: grid;
+        align-content: end;
+        padding: 18px;
+        border: var(--line);
+        border-radius: 28px;
+        background: var(--cream);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .feature-card:hover,
+      .story-card:hover,
+      .step:hover,
+      .faq details:hover,
+      .policy:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+      .feature-card img {
+        position: absolute;
+        inset: 18px 18px auto auto;
+        width: min(48%, 230px);
+        aspect-ratio: 1;
+        object-fit: cover;
+        border: var(--line);
+        border-radius: 24px;
+        background: white;
+        transform: rotate(4deg);
+      }
+      .feature-card.big {
+        min-height: 410px;
+        background: var(--yellow);
+      }
+      .feature-card.big img {
+        width: min(54%, 310px);
+        inset: 20px 22px auto auto;
+        transform: rotate(-4deg);
+      }
+      .feature-card .tag {
+        width: fit-content;
+        margin-bottom: 10px;
+        padding: 7px 10px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--pink);
+        color: white;
+        font-size: .76rem;
+        font-weight: 950;
+      }
+      .feature-card h3 {
+        position: relative;
+        z-index: 1;
+        max-width: 380px;
+        font-size: clamp(1.35rem, 2.5vw, 2.55rem);
+        line-height: 1;
+      }
+      .feature-card p {
+        position: relative;
+        z-index: 1;
+        max-width: 360px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-weight: 850;
+        line-height: 1.4;
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 26px;
+      }
+      .story-card {
+        position: relative;
+        min-height: 230px;
+        padding: 20px;
+        border: var(--line);
+        border-radius: 28px;
+        background: var(--mint);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .story-card:nth-child(2) { background: var(--pink); color: white; }
+      .story-card:nth-child(2) p { color: white; }
+      .story-card:nth-child(3) { background: var(--acid); }
+      .story-card::after {
+        content: "";
+        position: absolute;
+        right: -32px;
+        bottom: -34px;
+        width: 132px;
+        aspect-ratio: 1;
+        border: var(--line);
+        border-radius: 44% 56% 52% 48%;
+        background: rgba(255,255,255,.45);
+      }
+      .story-card h3 { font-size: 1.45rem; }
+      .story-card p { color: var(--muted); line-height: 1.45; }
+      .story-card .button { margin-top: 10px; }
+
+      .inspo-header {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, .95fr) minmax(280px, .72fr);
+        gap: clamp(18px, 5vw, 76px);
+        align-items: end;
+        margin-bottom: 28px;
+      }
+      .inspo-header h2 { max-width: 780px; }
+      .inspo-sticker {
+        position: absolute;
+        right: 0;
+        top: -30px;
+        padding: 9px 15px;
+        border: var(--line);
+        border-radius: 999px;
+        background: var(--acid);
+        box-shadow: var(--shadow);
+        font-weight: 950;
+        transform: rotate(6deg);
+        animation: bob 4.5s ease-in-out infinite;
+      }
+      .inspo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(14px, 2vw, 22px);
+      }
+      .inspo-card {
+        position: relative;
+        display: grid;
+        align-content: space-between;
+        min-height: 250px;
+        padding: 20px;
+        border: var(--line);
+        border-radius: 28px;
+        background: var(--paper);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .inspo-card:nth-child(1) { background: var(--yellow); transform: rotate(-1deg); }
+      .inspo-card:nth-child(2) { background: var(--mint); transform: rotate(1deg); }
+      .inspo-card:nth-child(3) { background: var(--pink); color: white; transform: rotate(-.7deg); }
+      .inspo-card:nth-child(4) { background: var(--blue); transform: rotate(.8deg); }
+      .inspo-card:nth-child(5) { background: var(--acid); transform: rotate(-1.1deg); }
+      .inspo-card:nth-child(6) { background: var(--cream); transform: rotate(1.1deg); }
+      .inspo-card:hover {
+        transform: translateY(-7px) rotate(0deg);
+        box-shadow: var(--shadow);
+      }
+      .inspo-card::before,
+      .inspo-card::after {
+        display: none;
+      }
+      .inspo-frog {
+        position: absolute;
+        right: 18px;
+        top: auto;
+        bottom: 16px;
+        z-index: 0;
+        width: clamp(74px, 7vw, 104px);
+        aspect-ratio: 1;
+        object-fit: contain;
+        pointer-events: none;
+        filter: drop-shadow(4px 4px 0 rgba(22, 17, 15, .18));
+        transform-origin: 50% 70%;
+        animation: inspoFrogFloat 3.2s ease-in-out infinite;
+      }
+      .inspo-card:nth-child(2) .inspo-frog { animation-name: inspoFrogHop; animation-delay: .2s; }
+      .inspo-card:nth-child(3) .inspo-frog { animation-delay: .35s; }
+      .inspo-card:nth-child(4) .inspo-frog { animation-name: inspoFrogWiggle; animation-delay: .1s; }
+      .inspo-card:nth-child(5) .inspo-frog { animation-delay: .5s; }
+      .inspo-card:nth-child(6) .inspo-frog { animation-name: inspoFrogHop; animation-delay: .4s; }
+      .inspo-card h3,
+      .inspo-card p,
+      .inspo-card a {
+        position: relative;
+        z-index: 1;
+      }
+      .inspo-card h3 {
+        max-width: calc(100% - 104px);
+        font-size: clamp(1.35rem, 2.2vw, 2.2rem);
+        line-height: 1;
+      }
+      .inspo-card p {
+        max-width: calc(100% - 126px);
+        margin: 14px 0 18px;
+        color: inherit;
+        opacity: .78;
+        line-height: 1.42;
+        font-weight: 850;
+      }
+      .inspo-card .button {
+        width: fit-content;
+        min-height: 40px;
+        padding-inline: 14px;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .inspo-card:nth-child(3) .button {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      @keyframes inspoFrogFloat {
+        0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+        50% { transform: translateY(-7px) rotate(4deg) scale(1.04); }
+      }
+      @keyframes inspoFrogHop {
+        0%, 100% { transform: translateY(0) rotate(2deg); }
+        38% { transform: translateY(-9px) rotate(-5deg); }
+        62% { transform: translateY(-3px) rotate(5deg); }
+      }
+      @keyframes inspoFrogWiggle {
+        0%, 100% { transform: rotate(-4deg); }
+        35% { transform: rotate(5deg) translateY(-4px); }
+        70% { transform: rotate(-1deg); }
+      }
+
+      .custom-section {
+        position: relative;
+        overflow: hidden;
+      }
+      .custom-section::before {
+        content: "";
+        position: absolute;
+        inset: auto -10% -96px -10%;
+        height: 190px;
+        border: var(--line);
+        border-radius: 50% 50% 0 0;
+        background: rgba(255, 242, 122, .72);
+        animation: waveDrift 10s ease-in-out infinite alternate;
+      }
+      .custom-section > * { position: relative; z-index: 1; }
+
+      .catalog-layout {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        align-items: start;
+        gap: 18px;
+      }
+      .catalog-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: end;
+        margin-bottom: 18px;
+        padding: 22px;
+        border: var(--line);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 10% 12%, rgba(255, 114, 189, .16), transparent 15rem),
+          radial-gradient(circle at 88% 10%, rgba(145, 255, 87, .18), transparent 12rem),
+          var(--cream);
+        box-shadow: var(--shadow-soft);
+      }
+      .catalog-hero h1 {
+        max-width: 760px;
+        font-size: clamp(2.1rem, 4.2vw, 4.3rem);
+        line-height: .95;
+      }
+      .catalog-count {
+        align-self: center;
+        white-space: nowrap;
+        padding: 8px 13px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--yellow);
+        box-shadow: 4px 5px 0 var(--ink);
+        font-weight: 950;
+      }
+      .catalog-toolbar {
+        display: grid;
+        grid-template-columns: minmax(220px, 1.1fr) minmax(150px, .7fr) minmax(150px, .7fr) minmax(150px, .7fr) auto;
+        gap: 10px;
+        align-items: end;
+        margin-bottom: 14px;
+        padding: 12px;
+        border: 2px solid var(--ink);
+        border-radius: 22px;
+        background: rgba(255, 249, 234, .88);
+        box-shadow: var(--shadow-soft);
+      }
+      .catalog-toolbar label {
+        gap: 5px;
+        color: var(--muted);
+        font-size: .74rem;
+        text-transform: uppercase;
+      }
+      .catalog-toolbar input,
+      .catalog-toolbar select {
+        min-height: 42px;
+        border-width: 2px;
+        border-radius: 999px;
+        font-size: .92rem;
+      }
+      .toolbar-count {
+        justify-self: end;
+        color: var(--muted);
+        font-size: .86rem;
+        font-weight: 950;
+      }
+      .quick-filter-row,
+      .active-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 14px;
+      }
+      .quick-chip,
+      .filter-chip {
+        padding: 8px 11px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: white;
+        box-shadow: 3px 4px 0 var(--ink);
+        font-weight: 950;
+      }
+      .quick-chip {
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .quick-chip:hover,
+      .quick-chip.active {
+        transform: translateY(-2px);
+        background: var(--acid);
+        box-shadow: 5px 6px 0 var(--ink);
+      }
+      .filter-chip {
+        background: var(--pink);
+        color: white;
+        font-size: .78rem;
+      }
+      .filters-shell summary {
+        display: none;
+        cursor: pointer;
+        font-weight: 950;
+      }
+      .filters {
+        position: sticky;
+        top: 112px;
+        display: grid;
+        gap: 12px;
+        padding: 14px;
+        box-shadow: var(--shadow-soft);
+      }
+      .filters h3 { margin: 0; font-size: 1.05rem; }
+      .filters .button.ghost {
+        min-height: 34px;
+        padding: 7px 10px;
+        border-width: 2px;
+        box-shadow: 3px 4px 0 var(--ink);
+        font-size: .78rem;
+      }
+      label { display: grid; gap: 8px; font-weight: 900; }
+      input, select, textarea {
+        width: 100%;
+        border: 2px solid var(--ink);
+        border-radius: 14px;
+        padding: 11px 12px;
+        background: white;
+        color: var(--ink);
+      }
+      textarea { resize: vertical; }
+      input[type="range"] { accent-color: var(--hot-pink); padding-inline: 0; }
+      input[type="checkbox"] { width: auto; }
+      .price-readout {
+        width: fit-content;
+        padding: 6px 10px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--yellow);
+        font-weight: 950;
+      }
+      .filters .price-readout {
+        margin-top: -4px;
+        background: var(--acid);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+        padding-bottom: 52px;
+      }
+      .product-card {
+        position: relative;
+        display: grid;
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+      .product-card.soldout { opacity: .62; filter: grayscale(.35); }
+      .soldout-tag {
+        position: absolute;
+        z-index: 2;
+        top: 12px;
+        left: 12px;
+        padding: 8px 12px;
+        border: var(--line);
+        border-radius: 999px;
+        background: var(--hot-pink);
+        color: white;
+        font-weight: 950;
+        box-shadow: var(--shadow);
+      }
+      .product-card img {
+        width: 100%;
+        aspect-ratio: 5 / 6;
+        object-fit: cover;
+        object-position: center;
+        background: white;
+        border-bottom: var(--line);
+      }
+      .product-body { display: grid; gap: 7px; padding: 12px; }
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--muted);
+        font-size: .72rem;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+      .status {
+        width: fit-content;
+        padding: 5px 8px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: white;
+        font-size: .66rem;
+        font-weight: 950;
+      }
+      .status.disponible { background: var(--acid); }
+      .status.por { background: var(--yellow); }
+      .status.agotado { background: #ddd5cd; }
+      .product-title { min-height: auto; margin: 0; font-size: .98rem; line-height: 1.16; }
+      .price { font-size: 1.08rem; font-weight: 950; }
+      .product-desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: .84rem;
+        font-weight: 850;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .product-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+      .product-badges span {
+        padding: 5px 8px;
+        border: 2px dashed var(--ink);
+        border-radius: 999px;
+        background: rgba(255,255,255,.75);
+        font-size: .72rem;
+        font-weight: 900;
+      }
+      .card-actions { display: grid; grid-template-columns: 1.05fr .95fr; gap: 8px; padding: 0 12px 12px; }
+      .card-actions .button { min-height: 38px; padding: 8px 10px; font-size: .78rem; }
+      .empty-state {
+        grid-column: 1 / -1;
+        padding: 36px;
+        border: var(--line);
+        border-radius: 26px;
+        background: var(--mint);
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: min(450px, 100vw);
+        height: 100vh;
+        padding: 18px;
+        border-radius: 0;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        background: var(--paper);
+        box-shadow: -20px 0 50px rgba(22,17,15,.18);
+        transform: translateX(105%);
+        transition: transform .26s ease;
+      }
+      .drawer.open { transform: translateX(0); }
+      .drawer-head { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+      .close {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        font-size: 1.4rem;
+      }
+      .cart-items { overflow: auto; padding: 14px 0; }
+      .cart-item {
+        display: grid;
+        grid-template-columns: 76px 1fr auto;
+        gap: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid var(--ink);
+        border-radius: 18px;
+        background: white;
+      }
+      .cart-item img { width: 76px; aspect-ratio: 1; object-fit: cover; border: 2px solid var(--ink); border-radius: 14px; }
+      .cart-item h3 { margin-bottom: 4px; font-size: .98rem; }
+      .qty { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; }
+      .qty button { width: 28px; aspect-ratio: 1; border-radius: 50%; }
+      .remove { padding: 6px 9px; border-radius: 999px; font-size: .75rem; }
+      .drawer-foot { display: grid; gap: 10px; padding-top: 14px; border-top: var(--line); }
+      .total-row { display: flex; justify-content: space-between; gap: 14px; margin: 8px 0; }
+      .total-row.total { padding-top: 10px; border-top: 2px dashed var(--ink); font-size: 1.1rem; }
+      .empty-cart {
+        padding: 26px;
+        border: 2px dashed var(--ink);
+        border-radius: 20px;
+        background: white;
+        text-align: center;
+      }
+
+      .modal-back {
+        position: fixed;
+        inset: 0;
+        z-index: 110;
+        display: none;
+        place-items: center;
+        padding: 18px;
+        background: rgba(22, 17, 15, .55);
+      }
+      .modal-back.open { display: grid; }
+      .modal {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(280px, .9fr) minmax(320px, 1fr);
+        gap: 24px;
+        width: min(1040px, 100%);
+        max-height: 92vh;
+        overflow: auto;
+        padding: 22px;
+      }
+      .modal > .close { position: absolute; top: 14px; right: 14px; z-index: 2; }
+      .modal-image {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border: var(--line);
+        border-radius: 24px;
+        background: white;
+        box-shadow: var(--shadow);
+      }
+      .modal-copy { display: grid; align-content: start; gap: 13px; padding-right: 34px; }
+      .modal-price { font-size: 1.6rem; font-weight: 950; }
+      .craft-note { padding: 12px; border: 2px dashed var(--ink); border-radius: 16px; background: white; color: var(--muted); line-height: 1.45; }
+
+      .custom-section {
+        display: grid;
+        grid-template-columns: minmax(0, .82fr) minmax(330px, 1fr);
+        gap: 24px;
+        align-items: start;
+        padding: 58px clamp(18px, 5vw, 76px);
+        border-block: var(--line);
+        background:
+          radial-gradient(circle at 16% 20%, rgba(255, 114, 189, .22), transparent 16rem),
+          var(--mint);
+      }
+      .steps { display: grid; gap: 10px; margin-top: 18px; }
+      .step {
+        display: grid;
+        grid-template-columns: 38px 1fr;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+        border: 2px solid var(--ink);
+        border-radius: 18px;
+        background: rgba(255,255,255,.78);
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .step b {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--yellow);
+      }
+      .form-card { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 20px; }
+      .wide { grid-column: 1 / -1; }
+      .file-input { padding: 14px; border: 2px dashed var(--ink); border-radius: 16px; background: white; }
+
+      .checkout-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
+        gap: clamp(18px, 3vw, 34px);
+        align-items: start;
+        padding: 42px clamp(18px, 5vw, 76px) 64px;
+        background:
+          radial-gradient(circle at 88% 12%, rgba(145, 255, 87, .18), transparent 18rem),
+          radial-gradient(circle at 12% 70%, rgba(255, 114, 189, .13), transparent 16rem),
+          var(--paper);
+      }
+      .checkout-fields { display: grid; gap: 16px; min-width: 0; }
+      .checkout-intro {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 2px;
+      }
+      .checkout-intro h2 {
+        max-width: 760px;
+        font-size: clamp(2rem, 4vw, 4.1rem);
+        line-height: .95;
+      }
+      .checkout-intro .section-note {
+        max-width: 650px;
+        font-size: 1rem;
+      }
+      .checkout-progress {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 6px 0 4px;
+      }
+      .checkout-progress span {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 12px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: white;
+        box-shadow: 3px 4px 0 var(--ink);
+        font-size: .78rem;
+        font-weight: 950;
+      }
+      .checkout-progress span::before {
+        content: "";
+        width: 9px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--acid);
+      }
+      .checkout-form { display: grid; gap: 14px; }
+      .field-group {
+        padding: 17px;
+        border: var(--line);
+        border-radius: 24px;
+        background: var(--paper);
+        box-shadow: var(--shadow-soft);
+      }
+      .field-group h3 {
+        margin: 0 0 12px;
+        font-size: 1.2rem;
+      }
+      .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .checkout-form label { gap: 7px; }
+      .checkout-form input,
+      .checkout-form select,
+      .checkout-form textarea {
+        min-height: 44px;
+        border-width: 2px;
+        border-radius: 14px;
+      }
+      .checkout-form textarea { min-height: 88px; }
+      .checkout-form input:required:invalid,
+      .checkout-form textarea:required:invalid {
+        border-color: rgba(255, 114, 189, .82);
+      }
+      .paychips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+      .chip {
+        min-height: 88px;
+        padding: 12px;
+        border-radius: 18px;
+        text-align: left;
+        background: white;
+      }
+      .chip span { display: block; margin-top: 4px; color: var(--muted); font-size: .84rem; line-height: 1.35; }
+      .chip.active { background: var(--yellow); box-shadow: var(--shadow); }
+      .chip[disabled] {
+        cursor: not-allowed;
+        opacity: .62;
+        filter: grayscale(.25);
+        box-shadow: none;
+      }
+      .payment-note {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: .86rem;
+        font-weight: 850;
+        line-height: 1.4;
+      }
+      .policy-check {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin: 0;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+      .policy-check input { margin-top: 3px; }
+      .summary {
+        position: sticky;
+        top: 112px;
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+        background:
+          linear-gradient(145deg, rgba(255, 242, 122, .45), transparent 48%),
+          var(--cream);
+      }
+      .summary h3 { margin: 0; }
+      .summary-list { display: grid; gap: 10px; }
+      .summary-item {
+        display: grid;
+        grid-template-columns: 56px 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 8px;
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        background: rgba(255,255,255,.82);
+      }
+      .summary-item img {
+        width: 56px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border: 2px solid var(--ink);
+        border-radius: 12px;
+        background: white;
+      }
+      .summary-item h4 {
+        margin: 0 0 3px;
+        font-size: .88rem;
+        line-height: 1.15;
+      }
+      .summary-item span {
+        color: var(--muted);
+        font-size: .78rem;
+        font-weight: 900;
+      }
+      .summary-empty {
+        padding: 22px 16px;
+        border: 2px dashed var(--ink);
+        border-radius: 18px;
+        background: white;
+        text-align: center;
+        font-weight: 900;
+      }
+      .summary-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: .82rem;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+      .button:disabled {
+        cursor: not-allowed;
+        opacity: .55;
+        transform: none;
+        box-shadow: 3px 4px 0 var(--ink);
+      }
+      .checkout-mobile-submit {
+        display: none;
+      }
+      .confirm-box {
+        display: none;
+        padding: 14px;
+        border: var(--line);
+        border-radius: 18px;
+        background: var(--acid);
+        font-weight: 850;
+      }
+
+      .about-section {
+        display: grid;
+        grid-template-columns: 1fr .72fr;
+        gap: 28px;
+        align-items: center;
+        background:
+          linear-gradient(135deg, rgba(255, 114, 189, .13), transparent 36%),
+          var(--cream);
+      }
+      .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+      .value-card { padding: 16px; background: white; }
+      .process-card {
+        position: relative;
+        border: var(--line);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 20% 18%, rgba(255, 114, 189, .18), transparent 12rem),
+          radial-gradient(circle at 82% 70%, rgba(145, 255, 87, .24), transparent 14rem),
+          var(--paper);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transform: rotate(1deg);
+      }
+      .process-card img {
+        width: 100%;
+        aspect-ratio: 1.15;
+        object-fit: contain;
+        padding: 26px 24px 18px;
+        border-bottom: var(--line);
+      }
+      .process-card p { margin: 0; padding: 14px; font-weight: 950; }
+
+      .policy-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .policy { padding: 18px; transition: transform .18s ease, box-shadow .18s ease; }
+      .policy p, .muted { color: var(--muted); line-height: 1.55; }
+      .faq {
+        position: relative;
+        background:
+          radial-gradient(circle at 10% 20%, rgba(184, 219, 116, .34), transparent 18rem),
+          radial-gradient(circle at 88% 18%, rgba(255, 114, 189, .14), transparent 17rem),
+          var(--paper);
+        overflow: hidden;
+      }
+      .faq::before {
+        content: "mago sapitos";
+        position: absolute;
+        right: clamp(18px, 7vw, 110px);
+        top: 36px;
+        padding: 8px 14px;
+        border: var(--line);
+        border-radius: 999px;
+        background: var(--lavender);
+        color: var(--paper);
+        box-shadow: var(--shadow);
+        font-weight: 950;
+        transform: rotate(5deg);
+      }
+      .faq .section-head {
+        align-items: end;
+        margin-bottom: 22px;
+      }
+      .faq .section-note {
+        max-width: 560px;
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        align-items: start;
+      }
+      .faq-card {
+        position: relative;
+        min-height: 150px;
+        padding: 0;
+        border: var(--line);
+        border-radius: 28px;
+        background: rgba(255, 249, 234, .86);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .faq-card:hover {
+        transform: translateY(-5px) rotate(-.4deg);
+        box-shadow: var(--shadow);
+      }
+      .faq-card[open] {
+        background: linear-gradient(135deg, var(--yellow), #fff7b9 58%, var(--paper));
+        box-shadow: var(--shadow);
+      }
+      .faq-card summary {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 92px;
+        padding: 18px;
+        cursor: pointer;
+        font-size: clamp(1rem, 1.5vw, 1.28rem);
+        font-weight: 950;
+        line-height: 1.08;
+        list-style: none;
+      }
+      .faq-card summary::-webkit-details-marker { display: none; }
+      .faq-icon,
+      .faq-plus {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        aspect-ratio: 1;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--acid);
+        box-shadow: 2px 3px 0 var(--ink);
+        font-size: .82rem;
+      }
+      .faq-plus {
+        background: var(--paper);
+        transition: transform .18s ease;
+      }
+      .faq-card[open] .faq-plus { transform: rotate(45deg); background: var(--pink); color: white; }
+      .faq-answer {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 12px;
+        align-items: end;
+        padding: 0 18px 18px;
+      }
+      .faq-mage {
+        width: 92px;
+        align-self: end;
+        pointer-events: none;
+        filter: drop-shadow(4px 5px 0 rgba(22,17,15,.8));
+        transform-origin: center bottom;
+      }
+      .faq-card[open] .faq-mage {
+        animation: mageExplain 2.8s ease-in-out infinite;
+      }
+      .faq-bubble {
+        position: relative;
+        margin: 0;
+        padding: 12px 13px;
+        border: 2px solid var(--ink);
+        border-radius: 18px 18px 18px 6px;
+        background: white;
+        color: var(--muted);
+        font-weight: 850;
+        line-height: 1.42;
+      }
+      .faq-bubble::before {
+        content: "";
+        position: absolute;
+        left: -9px;
+        bottom: 18px;
+        width: 15px;
+        height: 15px;
+        border-left: 2px solid var(--ink);
+        border-bottom: 2px solid var(--ink);
+        background: white;
+        transform: rotate(45deg);
+      }
+      @keyframes mageExplain {
+        0%, 100% { transform: translateY(0) rotate(-2deg); }
+        50% { transform: translateY(-5px) rotate(3deg); }
+      }
+      .policy-section {
+        position: relative;
+        background: var(--yellow);
+        border-top: var(--line);
+        overflow: hidden;
+      }
+      .policy-section::before {
+        content: "";
+        position: absolute;
+        inset: -60px auto auto -90px;
+        width: 220px;
+        aspect-ratio: 1;
+        border: var(--line);
+        border-radius: 42% 58% 54% 46%;
+        background: var(--pink);
+        opacity: .35;
+      }
+      .policy-section > * { position: relative; z-index: 1; }
+
+      .closing-cta {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, .72fr);
+        gap: clamp(22px, 4vw, 56px);
+        align-items: center;
+        padding: 86px clamp(18px, 5vw, 76px) 76px;
+        border-top: var(--line);
+        background:
+          radial-gradient(circle at 14% 28%, rgba(255, 114, 189, .24), transparent 18rem),
+          radial-gradient(circle at 88% 78%, rgba(145, 255, 87, .28), transparent 20rem),
+          var(--cream);
+        overflow: hidden;
+      }
+      .closing-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 82px;
+        background:
+          radial-gradient(90% 120% at 12% 0%, var(--mint) 0 58%, transparent 59%),
+          radial-gradient(80% 110% at 62% -8%, var(--pink) 0 48%, transparent 49%),
+          radial-gradient(70% 120% at 100% 0%, var(--yellow) 0 54%, transparent 55%);
+        opacity: .92;
+        transform-origin: center top;
+        animation: softWave 8s ease-in-out infinite alternate;
+      }
+      @keyframes softWave {
+        from { transform: translateX(-14px) scaleY(.96); }
+        to { transform: translateX(14px) scaleY(1.04); }
+      }
+      .closing-copy,
+      .closing-art { position: relative; z-index: 1; }
+      .closing-copy h2 {
+        max-width: 820px;
+        font-size: clamp(2.1rem, 5vw, 4.9rem);
+        line-height: .96;
+      }
+      .closing-copy .lead { max-width: 650px; }
+      .closing-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .closing-art {
+        min-height: 350px;
+        display: grid;
+        place-items: center;
+      }
+      .closing-sticker-main {
+        width: min(74%, 320px);
+        filter: drop-shadow(12px 12px 0 var(--ink));
+        animation: floatSticker 5.5s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .closing-note,
+      .closing-mini {
+        position: absolute;
+        border: var(--line);
+        box-shadow: var(--shadow);
+        font-weight: 950;
+        pointer-events: none;
+      }
+      .closing-note {
+        right: -6%;
+        top: 7%;
+        max-width: 148px;
+        padding: 9px 12px;
+        border-radius: 22px;
+        background: var(--acid);
+        font-size: .82rem;
+        transform: rotate(6deg);
+        animation: floatSticker 4.8s ease-in-out infinite reverse;
+      }
+      .closing-mini {
+        left: -4%;
+        bottom: 2%;
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: var(--pink);
+        color: white;
+        font-size: .8rem;
+        transform: rotate(-8deg);
+      }
+      @keyframes floatSticker {
+        0%, 100% { translate: 0 0; rotate: 0deg; }
+        50% { translate: 0 -7px; rotate: 1.5deg; }
+      }
+
+      .footer {
+        display: grid;
+        position: relative;
+        grid-template-columns: minmax(300px, 1.28fr) minmax(180px, .72fr) minmax(250px, .9fr);
+        column-gap: clamp(28px, 5vw, 86px);
+        row-gap: 34px;
+        padding: 52px clamp(28px, 6vw, 108px) 92px;
+        border-top: var(--line);
+        background: var(--ink);
+        color: var(--paper);
+        overflow: hidden;
+      }
+      .footer::before {
+        content: "";
+        position: absolute;
+        inset: 0 clamp(18px, 5vw, 92px) auto;
+        height: 2px;
+        border-radius: 999px;
+        background: rgba(255, 249, 234, .34);
+      }
+      .footer > * { position: relative; z-index: 1; }
+      .footer .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 34px;
+        margin-bottom: 24px;
+        line-height: 1;
+      }
+      .footer .brand span {
+        max-width: none;
+        padding-top: 0;
+      }
+      .footer .logo { box-shadow: 4px 4px 0 var(--paper); }
+      .footer p,
+      .footer .muted { color: rgba(255, 249, 234, .88); }
+      .footer h3 { margin-bottom: 12px; }
+      .footer-brand p { max-width: 620px; }
+      .footer-links,
+      .footer-contact { justify-self: start; }
+      .footer a {
+        display: block;
+        width: fit-content;
+        margin-bottom: 10px;
+        transition: color .16s ease, transform .16s ease;
+      }
+      .footer a:hover {
+        color: var(--yellow);
+        transform: translateX(4px);
+      }
+      .footer-bottom {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+        max-width: calc(100% - 220px);
+        padding-top: 18px;
+        margin-top: 6px;
+        border-top: 2px dashed rgba(255, 249, 234, .45);
+        color: rgba(255, 249, 234, .78);
+        font-weight: 850;
+      }
+      .footer-bottom span + span::before {
+        content: "·";
+        margin-right: 16px;
+        color: rgba(255, 249, 234, .5);
+      }
+      .float {
+        position: fixed;
+        right: 36px;
+        bottom: 44px;
+        z-index: 82;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        width: 116px;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        color: var(--ink);
+        filter: drop-shadow(6px 8px 0 rgba(22, 17, 15, .95));
+        transform-origin: center bottom;
+        animation: chatSapitoFloat 4.4s ease-in-out infinite;
+      }
+      body[data-page="faq"] .float,
+      body[data-page="faq"] .chat-panel {
+        display: none !important;
+      }
+      body[data-page="catalogo"] .float {
+        right: 24px;
+        bottom: 28px;
+        width: 98px;
+      }
+      body[data-page="catalogo"] .float::before {
+        width: 92px;
+        height: 92px;
+      }
+      body[data-page="catalogo"] .float small {
+        max-width: 100px;
+        font-size: .6rem;
+      }
+      .float::before {
+        content: "";
+        width: 108px;
+        height: 108px;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: url("public/catalogo/sapito-mago-ayuda.png") center / contain no-repeat;
+      }
+      .float:hover,
+      .float:focus-visible {
+        transform: translateY(-5px) rotate(-2deg);
+        filter: drop-shadow(8px 12px 0 rgba(22, 17, 15, .95));
+      }
+      .float span { display: none; }
+      .float small {
+        display: block;
+        max-width: 118px;
+        padding: 5px 9px;
+        border: 3px solid var(--ink);
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: .68rem;
+        font-weight: 950;
+        line-height: 1.05;
+        text-align: center;
+        box-shadow: 3px 4px 0 var(--ink);
+      }
+      @keyframes chatSapitoFloat {
+        0%, 100% { translate: 0 0; rotate: -1deg; }
+        50% { translate: 0 -6px; rotate: 2deg; }
+      }
+      .chat-panel {
+        position: fixed;
+        right: 34px;
+        bottom: 186px;
+        z-index: 81;
+        display: none;
+        width: min(360px, calc(100vw - 34px));
+        border: var(--line);
+        border-radius: 26px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .chat-panel.open { display: block; }
+      .chat-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px;
+        border-bottom: var(--line);
+        background: var(--yellow);
+      }
+      .chat-head h3 { margin: 0; }
+      .chat-body {
+        display: grid;
+        gap: 10px;
+        max-height: 300px;
+        overflow: auto;
+        padding: 14px;
+      }
+      .chat-message {
+        width: fit-content;
+        max-width: 88%;
+        padding: 10px 12px;
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        background: white;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+      .chat-message.user {
+        justify-self: end;
+        background: var(--pink);
+        color: white;
+      }
+      .chat-message a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .chat-quick {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 14px 12px;
+      }
+      .chat-quick button {
+        padding: 7px 10px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: var(--cream);
+        font-weight: 950;
+        cursor: pointer;
+      }
+      .chat-form {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 12px;
+        border-top: 2px dashed var(--ink);
+      }
+      .chat-form input { border-radius: 999px; }
+      .chat-form button { min-height: 42px; }
+
+      .cursor-sapito {
+        position: fixed;
+        z-index: 10000;
+        width: 28px;
+        aspect-ratio: 1;
+        pointer-events: none;
+        background: url("public/catalogo/cursor-sapito-transparente.png") center / contain no-repeat;
+        animation: sapitoTrail 1.25s ease-out forwards;
+        filter: drop-shadow(2px 2px 0 rgba(22, 17, 15, .78));
+      }
+      @keyframes sapitoTrail {
+        0% { opacity: 0; transform: translate(-50%, -50%) scale(.58) rotate(-6deg); }
+        18% { opacity: .82; }
+        100% { opacity: 0; transform: translate(-50%, -78%) scale(.96) rotate(8deg); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+        }
+        .cursor-sapito { display: none; }
+      }
+
+      @media (max-width: 1180px) {
+        .header { grid-template-columns: auto minmax(0, 1fr) auto; }
+        .brand span { max-width: 84px; }
+        .nav { justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+        .nav::-webkit-scrollbar { display: none; }
+        .nav a { padding-inline: 10px; }
+        .search-top { width: clamp(130px, 13vw, 170px); }
+        .hero {
+          grid-template-columns: minmax(0, 1fr) minmax(300px, .72fr);
+          gap: 28px;
+          padding-inline: clamp(24px, 4vw, 52px);
+        }
+        h1 { font-size: clamp(2.35rem, 4.4vw, 4.15rem); }
+        .lead { max-width: 560px; }
+        .hero-actions { grid-template-columns: 1fr; max-width: 460px; }
+        .hero-actions .button,
+        .hero-actions .button.dark { min-height: 50px; }
+        .trust-strip { max-width: 520px; }
+        .hero-stage {
+          min-height: 350px;
+          transform: translateY(-8px);
+        }
+        .hero-logo-card { width: min(82%, 340px); }
+        .hero-badge {
+          left: -2px;
+          bottom: 58px;
+          max-width: 162px;
+          font-size: .88rem;
+        }
+        .hero-product-card {
+          right: -2px;
+          bottom: 44px;
+          width: 98px;
+          border-radius: 22px;
+        }
+        .hero-product-card img { width: 76px; }
+        .hero-mini-cards {
+          position: static;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 8px;
+          padding-inline: 8px;
+        }
+        .hero-mini-cards span { font-size: .68rem; padding: 6px 8px; }
+        .reel-gallery {
+          grid-template-columns: clamp(250px, 28vw, 320px);
+          grid-auto-columns: clamp(195px, 24vw, 250px);
+        }
+        .featured-row { grid-template-columns: 1fr 1fr; }
+        .feature-card.big { grid-column: 1 / -1; }
+        .story-grid { grid-template-columns: 1fr 1fr; }
+        .inspo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .footer { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 900px) {
+        .announcement { position: static; }
+        .header {
+          top: 0;
+          grid-template-columns: auto 1fr auto;
+          gap: 10px;
+        }
+        .brand span { max-width: none; font-size: 1rem; }
+        .menu-toggle {
+          display: inline-flex;
+          justify-self: center;
+          min-width: 44px;
+          padding-inline: 12px;
+          background: var(--yellow);
+        }
+        .nav {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+          padding: 14px;
+          border-bottom: var(--line);
+          border-inline: 0;
+          border-radius: 0 0 24px 24px;
+          background: var(--paper);
+          box-shadow: 0 18px 34px rgba(22, 17, 15, .16);
+          overflow: visible;
+        }
+        .nav.open { display: flex; }
+        .nav a {
+          justify-content: space-between;
+          min-height: 44px;
+          border-color: var(--ink);
+          background: white;
+          border-radius: 16px;
+        }
+        .nav a.active { box-shadow: 4px 4px 0 var(--ink); }
+        .actions { justify-self: end; }
+        .search-top { display: none; }
+        .hero, .catalog-layout, .custom-section, .checkout-section, .about-section { grid-template-columns: 1fr; }
+        .catalog-hero,
+        .catalog-toolbar {
+          grid-template-columns: 1fr;
+        }
+        .catalog-count,
+        .toolbar-count {
+          justify-self: start;
+        }
+        .inspo-header { grid-template-columns: 1fr; }
+        .inspo-sticker { right: 10px; top: -18px; }
+        .hero-stage { min-height: auto; transform: none; }
+        .hero-cta { max-width: none; }
+        .hero-logo-card { width: min(76%, 330px); }
+        .hero-product-card {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: min(100%, 330px);
+          margin-top: 14px;
+          transform: rotate(-2deg);
+        }
+        .hero-dots { display: none; }
+        .hero-badge { position: static; max-width: none; margin-top: 12px; transform: none; }
+        .hero-mini-cards {
+          position: static;
+          flex-wrap: wrap;
+          margin-top: 14px;
+          justify-content: center;
+        }
+        .filters-shell summary { display: block; padding: 14px 16px; border: var(--line); border-radius: 18px; background: var(--yellow); box-shadow: var(--shadow); }
+        .filters-shell[open] summary { margin-bottom: 12px; }
+        .filters { position: static; }
+        .active-filters { margin-top: 4px; }
+        .summary { position: static; }
+        .checkout-section { grid-template-columns: 1fr; }
+        .featured-row,
+        .story-grid,
+        .values,
+        .faq-grid,
+        .policy-grid { grid-template-columns: 1fr; }
+        .faq::before { display: none; }
+        .faq-card summary { min-height: 76px; padding: 15px; }
+        .faq-answer { grid-template-columns: 74px 1fr; padding: 0 15px 15px; }
+        .faq-mage { width: 74px; }
+        .reel-gallery {
+          grid-template-columns: min(72vw, 290px);
+          grid-auto-columns: min(72vw, 290px);
+        }
+        .reel-copy-card,
+        .reel-card {
+          scroll-snap-align: start;
+        }
+        .reel-card { min-height: 360px; }
+        .closing-cta { grid-template-columns: 1fr; }
+        .closing-art { min-height: 280px; }
+        .footer { grid-template-columns: 1.2fr .8fr .9fr; padding-inline: clamp(22px, 4vw, 52px); }
+        .feature-card,
+        .feature-card.big { min-height: 300px; }
+        .home-editorial::before { display: none; }
+      }
+      @media (max-width: 640px) {
+        .brand span { display: none; }
+        .logo { width: 40px; height: 40px; }
+        .header { padding-inline: 12px; }
+        .menu-toggle { font-size: 0; }
+        .menu-toggle::before { content: "☰"; font-size: 1.15rem; line-height: 1; }
+        .icon-button { padding-inline: 10px; }
+        .icon-button span { display: none; }
+        .hero { padding-top: 28px; }
+        .hero-actions { grid-template-columns: 1fr; }
+        .hero-actions .button, .hero-actions .button.dark { min-height: 48px; font-size: .98rem; }
+        .trust-strip { gap: 6px; }
+        .trust-strip span { font-size: .78rem; }
+        .hero-product-card {
+          width: 96px;
+          border-radius: 20px;
+        }
+        .hero-product-card img { width: 74px; }
+        .sticker { display: none; }
+        .sticker.inline { display: inline-flex; margin-bottom: 14px; }
+        h1 { font-size: 2.3rem; }
+        .lead { font-size: .98rem; line-height: 1.5; }
+        .hero-mini-cards span { font-size: .68rem; padding: 6px 8px; }
+        .section, .custom-section, .checkout-section, .home-editorial { padding: 42px 16px; }
+        .inspo-grid { grid-template-columns: 1fr; }
+        .inspo-card {
+          min-height: 220px;
+          transform: none !important;
+        }
+        .inspo-frog {
+          width: 76px;
+          right: 10px;
+          top: auto;
+          bottom: 12px;
+        }
+        .inspo-card h3 {
+          max-width: calc(100% - 82px);
+        }
+        .inspo-card p {
+          max-width: calc(100% - 82px);
+        }
+        .inspo-card .button {
+          width: 100%;
+        }
+        .inspo-sticker {
+          position: static;
+          width: fit-content;
+          margin-top: 12px;
+        }
+        .section-head,
+        .category-kicker {
+          display: grid;
+          align-items: start;
+          gap: 10px;
+        }
+        .reel-gallery { gap: 12px; margin: 22px 0 26px; }
+        .reel-gallery {
+          grid-template-columns: min(78vw, 270px);
+          grid-auto-columns: min(78vw, 270px);
+        }
+        .reel-copy-card { padding: 18px; }
+        .reel-card { min-height: 330px; border-radius: 22px; }
+        .wave-divider { height: 44px; margin-top: 30px; }
+        .feature-card img { width: min(44%, 150px); }
+        .feature-card h3 { font-size: 1.42rem; }
+        .closing-cta { padding: 64px 16px 48px; }
+        .closing-cta::before { height: 48px; }
+        .closing-copy h2 { font-size: 2.18rem; }
+        .closing-actions { display: grid; }
+        .closing-actions .button { width: 100%; }
+        .closing-art { min-height: 210px; }
+        .closing-sticker-main { width: min(66%, 220px); }
+        .closing-note { right: 0; top: 0; max-width: 120px; font-size: .68rem; padding: 7px 9px; }
+        .closing-mini { left: 0; bottom: 0; font-size: .68rem; padding: 6px 9px; }
+        .category-grid, .product-grid, .field-grid, .form-card, .paychips, .footer { grid-template-columns: 1fr; }
+        .checkout-mobile-submit { display: inline-flex; width: 100%; }
+        .checkout-section { padding-bottom: 148px; }
+        .footer { padding: 44px 18px 104px; gap: 24px; }
+        .footer::before { inset-inline: 18px; }
+        .footer .brand {
+          gap: 24px;
+          margin-bottom: 22px;
+        }
+        .footer-bottom { max-width: 100%; display: flex; }
+        .footer-bottom span + span::before { display: none; }
+        .chat-panel {
+          left: 16px;
+          right: 16px;
+          bottom: 150px;
+          width: auto;
+        }
+        .page-intro-card { display: grid; align-items: start; }
+        .card-actions { grid-template-columns: 1fr; }
+        .modal { grid-template-columns: 1fr; padding: 16px; }
+        .modal-copy { padding-right: 0; }
+        .cart-item { grid-template-columns: 64px 1fr; }
+        .cart-item .remove { grid-column: 2; width: fit-content; }
+        .drawer { padding: 14px; }
+        .float {
+          left: auto;
+          right: 18px;
+          bottom: 18px;
+          width: 92px;
+          min-width: 0;
+        }
+        body:has(#checkout.active) .float {
+          right: 12px;
+          bottom: 86px;
+          width: 76px;
+        }
+        body:has(#checkout.active) .float::before {
+          width: 70px;
+          height: 70px;
+        }
+        body:has(#checkout.active) .float small {
+          max-width: 82px;
+          font-size: .52rem;
+        }
+        body[data-page="catalogo"] .float {
+          right: 14px;
+          bottom: 18px;
+          width: 78px;
+        }
+        body[data-page="catalogo"] .float::before {
+          width: 72px;
+          height: 72px;
+        }
+        body[data-page="catalogo"] .float small {
+          max-width: 84px;
+          font-size: .52rem;
+        }
+        .float::before {
+          width: 86px;
+          height: 86px;
+        }
+        .float small {
+          max-width: 96px;
+          padding: 4px 7px;
+          font-size: .58rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="announcement">Hecho a mano en Colombia · Pedidos personalizados · Envíos nacionales</div>
+    <header class="header">
+      <a class="brand" href="#inicio" aria-label="Sapitos la secuela inicio">
+        <img class="logo" src="public/catalogo/logo-sapitos.jpg" alt="" />
+        <span>Sapitos la secuela</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú">Menú</button>
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
+        <a href="#inicio" data-route="inicio">Inicio</a>
+        <a href="#catalogo" data-route="catalogo">Catálogo</a>
+        <a href="#personalizados" data-route="personalizados">Personalizados</a>
+        <a href="#checkout" data-route="checkout">Checkout</a>
+        <a href="#sobre" data-route="sobre">Sobre Sapitos</a>
+        <a href="#faq" data-route="faq">FAQ</a>
+      </nav>
+      <div class="actions">
+        <input class="search-top" id="searchTop" type="search" placeholder="Buscar pieza" aria-label="Buscar producto" />
+        <button class="icon-button" id="cartBtn" type="button" aria-label="Abrir carrito"><span>Carrito</span><strong id="count">0</strong></button>
+      </div>
+    </header>
+
+    <main>
+      <div class="page page-shell home-page active" id="inicio" data-page="inicio">
+        <section class="hero">
+          <span class="sticker two">Envíos nacionales</span>
+          <div>
+            <span class="sticker one inline">Hecho en Colombia</span>
+            <p class="eyebrow">Accesorios hechos a mano para gustos raros</p>
+            <h1>Accesorios hechos a mano para ideas que solo tú entiendes.</h1>
+            <p class="lead">Aretes, collares, llaveros, regalos y personajes personalizados hechos a mano para convertir gustos raros, referencias y chistes internos en piezas únicas.</p>
+            <div class="hero-cta">
+              <div class="hero-actions">
+                <a class="button dark" href="#catalogo">Comprar ahora</a>
+                <a class="button pink" href="#personalizados">Personalizar una pieza</a>
+              </div>
+              <div class="trust-strip" aria-label="Beneficios de compra">
+                <span>Pedidos personalizados</span>
+                <span>Confirmación por WhatsApp</span>
+                <span>Envíos en Colombia</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-stage">
+            <div class="hero-logo-card">
+              <img src="public/catalogo/logo-sapitos.jpg" alt="Logo de Sapitos la secuela" />
+            </div>
+            <div class="hero-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="hero-product-card" aria-label="Detalle visual Sapitos">
+              <img src="public/catalogo/hero-sapito-corazon.png" alt="Sapito con corazón decorativo" />
+            </div>
+            <div class="hero-badge">Regalos con historia, no cosas genéricas.</div>
+            <div class="hero-mini-cards" aria-label="Categorías destacadas">
+              <span>Aretes personalizados</span>
+              <span>Llaveros handmade</span>
+              <span>Regalos únicos</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section sapitos-intro" id="categorias">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Universo handmade en movimiento</p>
+              <h2>Conoce a Sapitos</h2>
+            </div>
+            <p class="section-note">Mira el proceso, los detalles y la personalidad detrás de cada pieza. Luego navega por mood para encontrar tu accesorio favorito.</p>
+          </div>
+          <div class="reel-gallery" aria-label="Galería de reels Sapitos">
+            <article class="reel-copy-card">
+              <div class="reel-copy-top">
+                <span class="reel-badge">Reels Sapitos</span>
+                <h3>Hecho a mano, muy Sapitos.</h3>
+              </div>
+              <div class="reel-frog" aria-hidden="true">
+                <img src="public/catalogo/sapito-saludando.png" alt="" />
+              </div>
+              <p>Un vistazo rápido al mundo Sapitos: piezas, procesos, colores y detalles listos para volverse regalo.</p>
+            </article>
+            <article class="reel-card">
+              <video src="public/catalogo/tiktok_sapitoslasecuela_7501741077720730885.mp4" muted autoplay loop playsinline preload="metadata"></video>
+              <span>Proceso handmade</span>
+            </article>
+            <article class="reel-card">
+              <video src="public/catalogo/tiktok_sapitoslasecuela_7509643274009726213.mp4" muted autoplay loop playsinline preload="metadata"></video>
+              <span>Detalles Sapitos</span>
+            </article>
+            <article class="reel-card">
+              <video src="public/catalogo/tiktok_sapitoslasecuela_7498408517808786694.mp4" muted autoplay loop playsinline preload="metadata"></video>
+              <span>Ideas raritas</span>
+            </article>
+            <article class="reel-card">
+              <video src="public/catalogo/tiktok_sapitoslasecuela_7476166058999582007.mp4" muted autoplay loop playsinline preload="metadata"></video>
+              <span>Regalos únicos</span>
+            </article>
+          </div>
+          <div class="category-kicker">
+            <div>
+              <p class="eyebrow">Elige tu mood Sapitos</p>
+              <h3>Compra por categoría</h3>
+            </div>
+            <p class="section-note">Accesos rápidos para saltar al catálogo por tipo de pieza.</p>
+          </div>
+          <div class="category-grid" id="cats"></div>
+        </section>
+
+        <section class="drop-band" aria-label="Mensaje destacado">
+          <div>
+            <p class="eyebrow">Drop abierto</p>
+            <h2>Piezas listas, encargos especiales y regalos que parecen pensados por dentro.</h2>
+          </div>
+          <a class="button dark" href="#catalogo">Comprar ahora</a>
+        </section>
+
+        <div class="wave-divider" aria-hidden="true"></div>
+
+        <section class="home-editorial" aria-label="Ideas para personalizar Sapitos">
+          <div class="inspo-header">
+            <div>
+              <p class="eyebrow">Ideas para personalizar</p>
+              <h2>No sabes qué Sapito pedir?</h2>
+            </div>
+            <p class="section-note">Empieza por una persona, una mascota, un personaje, un color o una referencia que te guste. Nos mandas la idea por WhatsApp y la revisamos contigo para convertirla en un accesorio hecho a mano.</p>
+            <span class="inspo-sticker">hecho a mano</span>
+          </div>
+          <div class="inspo-grid">
+            <article class="inspo-card">
+              <img class="inspo-frog" src="public/catalogo/sapito-inspo-regalo.png" alt="" aria-hidden="true" />
+              <div>
+                <h3>Para regalar</h3>
+                <p>Detalles personalizados para cumpleaños, amigas, pareja o alguien que merece algo único.</p>
+              </div>
+              <a class="button" target="_blank" rel="noopener noreferrer" href="https://wa.me/573001234567?text=Hola,%20quiero%20armar%20un%20regalo%20personalizado%20Sapitos.">Armar regalo</a>
+            </article>
+            <article class="inspo-card">
+              <img class="inspo-frog" src="public/catalogo/sapito-inspo-mascota.png" alt="" aria-hidden="true" />
+              <div>
+                <h3>Tu mascota Sapito</h3>
+                <p>Convierte a tu perro, gato o mascota favorita en un accesorio con su carita, colores y personalidad.</p>
+              </div>
+              <a class="button" target="_blank" rel="noopener noreferrer" href="https://wa.me/573001234567?text=Hola,%20quiero%20cotizar%20un%20Sapito%20personalizado%20de%20mi%20mascota.">Cotizar mascota</a>
+            </article>
+            <article class="inspo-card">
+              <img class="inspo-frog" src="public/catalogo/sapito-inspo-personaje.png" alt="" aria-hidden="true" />
+              <div>
+                <h3>Personajes favoritos</h3>
+                <p>Mándanos una referencia de serie, juego, película o anime y la adaptamos al estilo Sapitos.</p>
+              </div>
+              <a class="button" target="_blank" rel="noopener noreferrer" href="https://wa.me/573001234567?text=Hola,%20quiero%20mandar%20una%20referencia%20para%20convertirla%20en%20Sapito.">Mandar referencia</a>
+            </article>
+            <article class="inspo-card">
+              <img class="inspo-frog" src="public/catalogo/sapito-inspo-amistad.png" alt="" aria-hidden="true" />
+              <div>
+                <h3>Amistad o pareja</h3>
+                <p>Accesorios para compartir, combinar o regalar con una historia detrás.</p>
+              </div>
+              <a class="button" target="_blank" rel="noopener noreferrer" href="https://wa.me/573001234567?text=Hola,%20quiero%20ver%20ideas%20Sapitos%20para%20amistad%20o%20pareja.">Ver ideas</a>
+            </article>
+            <article class="inspo-card">
+              <img class="inspo-frog" src="public/catalogo/sapito-inspo-idea.png" alt="" aria-hidden="true" />
+              <div>
+                <h3>Tu idea rarita</h3>
+                <p>Si no sabes cómo explicarla, mándanos fotos, colores o referencias y la armamos contigo.</p>
+              </div>
+              <a class="button" target="_blank" rel="noopener noreferrer" href="https://wa.me/573001234567?text=Hola,%20quiero%20contar%20una%20idea%20rarita%20para%20un%20Sapito%20personalizado.">Contar mi idea</a>
+            </article>
+            <article class="inspo-card">
+              <img class="inspo-frog" src="public/catalogo/sapito-inspo-colores.png" alt="" aria-hidden="true" />
+              <div>
+                <h3>Colores a tu gusto</h3>
+                <p>Personaliza tonos, formas, detalles y estilo para que la pieza se sienta más tuya.</p>
+              </div>
+              <a class="button" target="_blank" rel="noopener noreferrer" href="https://wa.me/573001234567?text=Hola,%20quiero%20personalizar%20colores%20y%20detalles%20de%20mi%20Sapito.">Personalizar</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="closing-cta" aria-label="Último llamado Sapitos">
+          <div class="closing-copy">
+            <p class="eyebrow">Último llamado Sapitos</p>
+            <h2>¿Tienes una idea rara? Probablemente sí se puede volver accesorio.</h2>
+            <p class="lead">Cuéntanos el personaje, el color, la mascota o el chiste interno. Lo convertimos en una pieza hecha a mano.</p>
+            <div class="closing-actions">
+              <a class="button dark" href="#personalizados">Hacer pedido personalizado</a>
+              <a class="button ghost" href="#catalogo">Ver catálogo</a>
+            </div>
+          </div>
+          <div class="closing-art" aria-hidden="true">
+            <img class="closing-sticker-main" src="public/catalogo/hero-sapito-corazon.png" alt="" />
+            <span class="closing-note">Pedidos raritos bienvenidos</span>
+            <span class="closing-mini">Hecho en Colombia</span>
+          </div>
+        </section>
+      </div>
+
+      <section class="page page-shell section catalog-page" id="catalogo" data-page="catalogo">
+        <div class="catalog-hero">
+          <div>
+            <p class="eyebrow">Catálogo Sapitos</p>
+            <h1>Piezas listas para comprar</h1>
+            <p class="section-note">Filtra, mira detalles y arma tu pedido sin perderte entre secciones.</p>
+          </div>
+          <p class="catalog-count" id="resultCount"></p>
+        </div>
+        <div class="catalog-toolbar" aria-label="Herramientas del catálogo">
+          <label>Buscar<input id="search" type="search" placeholder="Sapito, flor, fresa..." /></label>
+          <label>Categoría<select id="category"></select></label>
+          <label>Disponibilidad<select id="status"><option value="todos">Todas</option><option value="disponible">Disponible</option><option value="por encargo">Por encargo</option><option value="agotado">Agotado</option></select></label>
+          <label>Ordenar<select id="sort"><option value="recent">Más reciente</option><option value="low">Menor precio</option><option value="high">Mayor precio</option></select></label>
+          <span class="toolbar-count" id="toolbarCount"></span>
+        </div>
+        <div class="quick-filter-row" aria-label="Filtros rápidos del catálogo">
+          <button class="quick-chip active" type="button" data-quick="todo">Todo</button>
+          <button class="quick-chip" type="button" data-quick="aretes">Aretes</button>
+          <button class="quick-chip" type="button" data-quick="collares">Collares</button>
+          <button class="quick-chip" type="button" data-quick="llaveros">Llaveros</button>
+          <button class="quick-chip" type="button" data-quick="disponible">Disponibles</button>
+          <button class="quick-chip" type="button" data-quick="bestseller">Más vendidos</button>
+          <button class="quick-chip" type="button" data-quick="nuevo">Nuevos</button>
+        </div>
+        <div class="catalog-layout">
+          <details class="filters-shell" open>
+            <summary>Filtrar catálogo</summary>
+            <aside class="filters" aria-label="Filtros del catálogo">
+              <h3>Filtros finos</h3>
+              <div class="active-filters" id="activeFilters" aria-label="Filtros activos"></div>
+              <label>Precio máximo <span class="price-readout" id="priceLabel">Hasta $80.000 COP</span><input id="price" type="range" min="5000" max="80000" step="1000" value="80000" /></label>
+              <button class="button ghost" id="clearFilters" type="button">Quitar filtros</button>
+            </aside>
+          </details>
+          <div class="product-grid" id="products"></div>
+        </div>
+      </section>
+
+      <section class="page page-shell custom-section" id="personalizados" data-page="personalizados">
+        <div>
+          <p class="eyebrow">Pedido personalizado</p>
+          <h2>Cuéntanos la idea. Nosotras la volvemos pieza.</h2>
+          <p class="lead">Para personajes, regalos con referencias, nombres, mascotas o combinaciones de colores. El formulario crea el mensaje para WhatsApp y deja todo listo para cotizar.</p>
+          <div class="steps">
+            <div class="step"><b>1</b><span>Cuéntanos tu idea y referencias.</span></div>
+            <div class="step"><b>2</b><span>Revisamos materiales, tamaño y tiempo.</span></div>
+            <div class="step"><b>3</b><span>Confirmas diseño, precio y pago.</span></div>
+            <div class="step"><b>4</b><span>Recibes tu pieza hecha a mano.</span></div>
+          </div>
+        </div>
+        <form class="form-card" id="customForm">
+          <label>Nombre<input name="name" required /></label>
+          <label>WhatsApp<input name="phone" required /></label>
+          <label>Tipo de producto<select name="type"><option>Aretes</option><option>Collar</option><option>Llavero</option><option>Cabello</option><option>Pulsera</option><option>Otros</option></select></label>
+          <label>Fecha deseada<input type="date" name="date" /></label>
+          <label class="wide">Descripción de la idea<textarea name="idea" rows="5" required placeholder="Referencia, colores, nombre, medidas, ocasión, presupuesto..."></textarea></label>
+          <label class="wide file-input">Imagen de referencia<input type="file" name="file" accept="image/*" /></label>
+          <button class="button dark wide">Enviar solicitud por WhatsApp</button>
+        </form>
+      </section>
+
+      <section class="page page-shell checkout-section" id="checkout" data-page="checkout">
+        <div class="checkout-fields">
+          <div class="checkout-intro">
+            <p class="eyebrow">Finaliza tu pedido</p>
+            <h2>Finaliza tu pedido</h2>
+            <p class="section-note">Completa tus datos, revisa tu resumen y confirma por WhatsApp.</p>
+            <div class="checkout-progress" aria-label="Progreso del checkout">
+              <span>Datos</span>
+              <span>Entrega</span>
+              <span>Pago</span>
+              <span>Confirmación</span>
+            </div>
+          </div>
+          <form class="checkout-form" id="checkoutForm">
+            <div class="field-group">
+              <h3>Datos del cliente 🐸</h3>
+              <div class="field-grid">
+                <label>Nombre completo *<input name="fullName" placeholder="Ej: Luisa Menco" required /></label>
+                <label>Email *<input name="email" type="email" placeholder="tu@email.com" required /></label>
+                <label>WhatsApp *<input name="whatsapp" placeholder="Ej: 300 123 4567" required /></label>
+                <label>Ciudad *<input name="city" placeholder="Ej: Medellín" required /></label>
+              </div>
+            </div>
+            <div class="field-group">
+              <h3>Entrega 📦</h3>
+              <div class="field-grid">
+                <label class="wide">Dirección *<input name="address" placeholder="Barrio, calle, número, apto..." required /></label>
+                <label>Método de entrega<select name="delivery"><option>Envío nacional</option><option>Entrega local acordada</option><option>Recoger en punto acordado</option></select></label>
+                <label>Notas<textarea name="notes" rows="3" placeholder="Horarios, referencia, regalo, empaque..."></textarea></label>
+              </div>
+            </div>
+            <div class="field-group">
+              <h3>Método de pago 💸</h3>
+              <input type="hidden" name="payment" id="pay" value="Nequi/Daviplata manual" />
+              <div class="paychips">
+                <button type="button" class="chip active" data-pay="Nequi/Daviplata manual"><strong>Nequi/Daviplata</strong><span>Confirmación manual por WhatsApp.</span></button>
+                <button type="button" class="chip" data-pay="Wompi" disabled><strong>Wompi</strong><span>Próximamente.</span></button>
+                <button type="button" class="chip" data-pay="Mercado Pago" disabled><strong>Mercado Pago</strong><span>Próximamente.</span></button>
+                <button type="button" class="chip" data-pay="PSE / Tarjeta" disabled><strong>PSE / Tarjeta</strong><span>Próximamente.</span></button>
+              </div>
+              <p class="payment-note">Las pasarelas Wompi, Mercado Pago, PSE y tarjeta quedan preparadas para integración futura. Por ahora, confirmamos el pago manual por chat.</p>
+            </div>
+            <div class="field-group">
+              <h3>Políticas</h3>
+              <label class="policy-check"><input type="checkbox" id="acceptPolicies" required /> <span>Acepto políticas de compra y tiempos de elaboración. *</span></label>
+            </div>
+            <button class="button dark checkout-mobile-submit" type="submit">Confirmar pedido por WhatsApp</button>
+            <div class="confirm-box" id="confirmBox"></div>
+          </form>
+        </div>
+        <aside class="summary">
+          <p class="eyebrow">Resumen</p>
+          <h3>Tu pedido Sapitos</h3>
+          <div id="summary"></div>
+          <p class="summary-note">Tu pedido se revisa antes del pago final para confirmar disponibilidad, envío y tiempos.</p>
+          <button class="button pink" type="button" id="summaryWa">Confirmar pedido por WhatsApp</button>
+          <a class="button ghost" href="#catalogo">Seguir comprando</a>
+        </aside>
+      </section>
+
+      <section class="page page-shell section about-section" id="sobre" data-page="sobre">
+        <div>
+          <p class="eyebrow">Sobre Sapitos</p>
+          <h2>Una tienda para regalos que se sienten demasiado específicos.</h2>
+          <p class="lead">Sapitos la secuela convierte referencias, gustos raros, colores favoritos y mini obsesiones en accesorios artesanales con alma de sticker, regalo y recuerdo.</p>
+          <div class="values">
+            <article class="value-card"><h3>Hecho a mano</h3><p>Cada pieza pasa por proceso manual y puede tener pequeñas variaciones bonitas.</p></article>
+            <article class="value-card"><h3>Personalizable</h3><p>Colores, nombres, personajes, mascotas, iniciales y referencias especiales.</p></article>
+            <article class="value-card"><h3>Regalos con historia</h3><p>Objetos para decir “me acordé de ti” sin comprar algo genérico.</p></article>
+          </div>
+        </div>
+        <div class="process-card">
+          <img src="public/catalogo/sapito-sobre-saludo.png" alt="Sapito saludando de Sapitos la secuela" />
+          <p>Hecho a mano con ideas raritas, colores favoritos y mucho cariño.</p>
+        </div>
+      </section>
+
+      <section class="page page-shell section faq" id="faq" data-page="faq">
+        <div class="section-head">
+          <div><p class="eyebrow">FAQ del mago</p><h2>Pregúntale al Sapito Mago</h2></div>
+          <p class="section-note">Haz clic en una pregunta y el mago te explica lo importante sin vueltas raras.</p>
+        </div>
+        <div class="faq-grid">
+          <details class="faq-card" open>
+            <summary><span class="faq-icon">?</span><span>¿Cuánto tarda un pedido personalizado?</span><span class="faq-plus">+</span></summary>
+            <div class="faq-answer"><img class="faq-mage" src="public/catalogo/sapito-mago-ayuda.png" alt="" /><p class="faq-bubble">Normalmente entre 4 y 12 días hábiles. Si la idea tiene muchos detalles, personajes o piezas extra, te confirmamos el tiempo exacto antes de pagar.</p></div>
+          </details>
+          <details class="faq-card">
+            <summary><span class="faq-icon">?</span><span>¿Qué materiales usan?</span><span class="faq-plus">+</span></summary>
+            <div class="faq-answer"><img class="faq-mage" src="public/catalogo/sapito-mago-ayuda.png" alt="" /><p class="faq-bubble">Usamos porcelanicron, acero inoxidable, acrílico, murano, resina, piedras, cuentas y herrajes seleccionados según la pieza. También te contamos qué conviene para tu idea.</p></div>
+          </details>
+          <details class="faq-card">
+            <summary><span class="faq-icon">?</span><span>¿Hacen envíos?</span><span class="faq-plus">+</span></summary>
+            <div class="faq-answer"><img class="faq-mage" src="public/catalogo/sapito-mago-ayuda.png" alt="" /><p class="faq-bubble">Sí, hacemos envíos nacionales en Colombia. El valor final depende de tu ciudad, el tamaño del pedido y el método de entrega.</p></div>
+          </details>
+          <details class="faq-card">
+            <summary><span class="faq-icon">?</span><span>¿Cómo se paga?</span><span class="faq-plus">+</span></summary>
+            <div class="faq-answer"><img class="faq-mage" src="public/catalogo/sapito-mago-ayuda.png" alt="" /><p class="faq-bubble">Por ahora confirmamos pago manual por Nequi, Daviplata o transferencia. Las pasarelas como Wompi, Mercado Pago, PSE y tarjeta quedan preparadas para más adelante.</p></div>
+          </details>
+          <details class="faq-card">
+            <summary><span class="faq-icon">?</span><span>¿Puedo mandar referencias?</span><span class="faq-plus">+</span></summary>
+            <div class="faq-answer"><img class="faq-mage" src="public/catalogo/sapito-mago-ayuda.png" alt="" /><p class="faq-bubble">Sí. Puedes mandar fotos, colores, personajes, mascotas, dibujos o ideas medio difíciles de explicar. Con eso armamos una propuesta Sapitos.</p></div>
+          </details>
+          <details class="faq-card">
+            <summary><span class="faq-icon">?</span><span>¿Qué pasa si quiero un personaje específico?</span><span class="faq-plus">+</span></summary>
+            <div class="faq-answer"><img class="faq-mage" src="public/catalogo/sapito-mago-ayuda.png" alt="" /><p class="faq-bubble">Revisamos la referencia, el tamaño, los detalles y la fecha. Si se puede adaptar al estilo Sapitos, te damos precio y tiempo antes de empezar.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <section class="page page-shell section policy-section" id="politicas" data-page="politicas">
+        <div class="section-head">
+          <div><p class="eyebrow">Políticas</p><h2>Compra con claridad</h2></div>
+        </div>
+        <div class="policy-grid">
+          <article class="policy"><h3>Envíos</h3><p>Los tiempos empiezan cuando el pedido queda pago y aprobado. El costo se confirma por ciudad.</p></article>
+          <article class="policy"><h3>Cambios</h3><p>Las piezas personalizadas no tienen devolución salvo falla de fabricación. Revisamos cada caso con cuidado.</p></article>
+          <article class="policy"><h3>Términos</h3><p>Los colores pueden variar por pantalla y cada pieza handmade puede tener pequeñas diferencias naturales.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <a class="brand" href="#inicio"><img class="logo" src="public/catalogo/logo-sapitos.jpg" alt="" /><span>Sapitos la secuela</span></a>
+        <p>Accesorios artesanales, personalizados y juveniles para regalos, outfits y referencias que nadie más entiende igual.</p>
+        <p class="muted">Cute, handmade y cero genérico.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Comprar</h3>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#personalizados">Pedido personalizado</a>
+        <a href="#checkout">Finalizar pedido</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#politicas">Políticas</a>
+      </div>
+      <div class="footer-contact">
+        <h3>Redes y contacto</h3>
+        <a href="https://instagram.com/sapitoslasecuela">@sapitoslasecuela</a>
+        <a href="https://www.tiktok.com/@sapitoslasecuela">TikTok Sapitos</a>
+        <a href="#chatPanel" id="footerChatLink">Asistente Sapitos</a>
+        <a href="mailto:hola@sapitoslasecuela.com">hola@sapitoslasecuela.com</a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Sapitos la secuela</span>
+        <span>Hecho a mano en Colombia</span>
+      </div>
+    </footer>
+
+    <button class="button float" id="chatToggle" type="button" aria-expanded="false" aria-controls="chatPanel">
+      <span>Chat Sapitos</span><small>Responde tus dudas</small>
+    </button>
+
+    <section class="chat-panel" id="chatPanel" aria-label="Chatbot Sapitos">
+      <div class="chat-head">
+        <div>
+          <p class="eyebrow">Asistente Sapitos</p>
+          <h3>¿Qué quieres hacer?</h3>
+        </div>
+        <button class="close" id="closeChat" type="button" aria-label="Cerrar chat">×</button>
+      </div>
+      <div class="chat-body" id="chatMessages">
+        <p class="chat-message">Hola, soy el asistente Sapitos. Te ayudo a encontrar piezas, personalizar una idea o revisar tu carrito.</p>
+      </div>
+      <div class="chat-quick" aria-label="Opciones rápidas del chat">
+        <button type="button" data-chat="Quiero ver el catálogo">Ver catálogo</button>
+        <button type="button" data-chat="Quiero personalizar una pieza">Personalizar</button>
+        <button type="button" data-chat="Quiero revisar mi carrito">Carrito</button>
+      </div>
+      <form class="chat-form" id="chatForm">
+        <input id="chatInput" type="text" placeholder="Escribe tu duda..." aria-label="Mensaje para el chatbot" />
+        <button class="button dark" type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <aside class="drawer" id="drawer" aria-label="Carrito lateral">
+      <div class="drawer-head">
+        <div><p class="eyebrow">Tu pedido</p><h2>Carrito</h2><p class="muted">Tu pedido se confirma por WhatsApp antes del pago final.</p></div>
+        <button class="close" id="closeCart" type="button" aria-label="Cerrar carrito">×</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="drawer-foot">
+        <label>Envío editable<input id="shipping" type="number" value="12000" min="0" /></label>
+        <div id="cartTotals"></div>
+        <a class="button dark" href="#checkout" id="goCheckout">Ir a pagar</a>
+        <button class="button ghost" id="cartWa" type="button">Comprar por WhatsApp</button>
+      </div>
+    </aside>
+
+    <div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalName">
+      <div class="modal">
+        <button class="close" id="closeModal" type="button" aria-label="Cerrar producto">×</button>
+        <img class="modal-image" id="modalImg" src="" alt="" />
+        <div class="modal-copy">
+          <span id="modalStatus" class="status"></span>
+          <h2 id="modalName"></h2>
+          <strong class="modal-price" id="modalPrice"></strong>
+          <p id="modalDesc" class="muted"></p>
+          <p><strong>Materiales:</strong> <span id="modalMaterials"></span></p>
+          <p><strong>Tiempo:</strong> <span id="modalTime"></span></p>
+          <p class="craft-note">Cada pieza puede tener pequeñas variaciones por ser hecha a mano. Eso también hace parte de su encanto.</p>
+          <label>Notas para tu pedido<textarea id="modalNotes" rows="4" placeholder="Color, nombre, referencia, fecha especial..."></textarea></label>
+          <div class="hero-actions">
+            <button class="button dark" id="modalAdd" type="button">Agregar al carrito</button>
+            <button class="button ghost" id="modalWa" type="button">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const phone = '573001234567';
+      const catData = [
+        ['aretes','Aretes','categoria-real-aretes.png','Mini piezas para orejas con actitud de sticker.'],
+        ['collares','Collares','categoria-real-collares.png','Dijes y piedras para looks con historia.'],
+        ['llaveros','Llaveros','categoria-real-llaveros.png','Compañeritos para bolso, llaves o regalo.'],
+        ['cabello','Cabello','categoria-real-cabello.png','Ganchitos y pinzas para peinados con cuento.'],
+        ['pulsera','Pulsera','categoria-real-pulsera.png','Pulseras, dijes y piezas para combinar.'],
+        ['otros','Otros','categoria-real-otros.png','Piezas especiales, mascotas, regalos y personalizados.']
+      ];
+      const products = [
+        ['aretes-orquideas-rosadas-reales','Aretes orquídeas rosadas',50000,'aretes','Aretes','disponible','productos-reales/producto-real-01.png','Porcelanicron y acero inoxidable.',['floral','hecho a mano'],'Flores rosadas modeladas a mano con brillo delicado.'],
+        ['aretes-estrellas-amarillas','Aretes estrellas amarillas',32000,'aretes','Aretes','disponible','productos-reales/producto-real-02.png','Porcelanicron y acero inoxidable.',['cute','coloridos'],'Estrellitas amarillas para un look tierno y juguetón.'],
+        ['aretes-mariquitas-rojas','Aretes mariquitas rojas',28000,'aretes','Aretes','disponible','productos-reales/producto-real-03.png','Porcelanicron y acero inoxidable.',['mini','ideal regalo'],'Mariquitas mini con detalles pintados a mano.'],
+        ['aretes-fresitas-mini','Aretes fresitas mini',26000,'aretes','Aretes','disponible','productos-reales/producto-real-04.png','Porcelanicron y acero inoxidable.',['frutal','mini'],'Fresitas pequeñas y brillantes para uso diario.'],
+        ['aretes-peces-dorados','Aretes peces dorados',30000,'aretes','Aretes','disponible','productos-reales/producto-real-05.png','Porcelanicron y acero inoxidable.',['marino','nuevo'],'Pececitos dorados con acabado divertido y artesanal.'],
+        ['aretes-ranitas-verdes','Aretes ranitas verdes',28000,'aretes','Aretes','disponible','productos-reales/producto-real-06.png','Porcelanicron y acero inoxidable.',['sapito mood','bestseller'],'Ranitas verdes mini con carita Sapitos.'],
+        ['aretes-delfines-azules','Aretes delfines azules',30000,'aretes','Aretes','disponible','productos-reales/producto-real-07.png','Porcelanicron, piedras y acero inoxidable.',['azul','marino'],'Delfines azules con piedras y movimiento sutil.'],
+        ['aretes-manzanas-rojas','Aretes manzanas rojas',30000,'aretes','Aretes','disponible','productos-reales/producto-real-08.png','Porcelanicron y acero inoxidable.',['frutal','rojo'],'Manzanitas rojas hechas a mano con detalle dulce.'],
+        ['aretes-conchitas-cristal','Aretes conchitas cristal',32000,'aretes','Aretes','disponible','productos-reales/producto-real-09.png','Porcelanicron, cristal y acero inoxidable.',['marino','brillante'],'Conchitas con cuentas transparentes y vibra playera.'],
+        ['aretes-pinguinos-mini','Aretes pingüinos mini',30000,'aretes','Aretes','disponible','productos-reales/producto-real-10.png','Porcelanicron y acero inoxidable.',['cute','animalitos'],'Pingüinitos mini para regalos tiernos y diferentes.'],
+        ['aretes-lunas-amarillas','Aretes lunas amarillas',28000,'aretes','Aretes','disponible','productos-reales/producto-real-11.png','Porcelanicron y acero inoxidable.',['cósmico','amarillo'],'Lunas amarillas livianas con acabado brillante.'],
+        ['aretes-circulos-arcoiris','Aretes círculos arcoíris',34000,'aretes','Aretes','disponible','productos-reales/producto-real-12.png','Porcelanicron y acero inoxidable.',['coloridos','statement'],'Círculos coloridos con efecto arcoíris artesanal.'],
+        ['aretes-flores-nocturnas','Aretes flores nocturnas',34000,'aretes','Aretes','disponible','productos-reales/producto-real-13.png','Porcelanicron, cuentas y acero inoxidable.',['floral','noche'],'Flores oscuras con estrellas y perlas de colores.'],
+        ['aretes-estrellas-durazno','Aretes estrellas durazno',28000,'aretes','Aretes','disponible','productos-reales/producto-real-14.png','Porcelanicron y acero inoxidable.',['estrella','cute'],'Estrellas en tono durazno con carita divertida.'],
+        ['aretes-cajitas-cola','Aretes cajitas cola',30000,'aretes','Aretes','disponible','productos-reales/producto-real-15.png','Porcelanicron y acero inoxidable.',['antojo','divertidos'],'Mini cajitas rojas para un accesorio con humor.'],
+        ['dijes-personajes-mini','Dijes personajes mini',18000,'otros','Otros','por encargo','productos-reales/producto-real-16.png','Porcelanicron pintado a mano.',['personalizable','por encargo'],'Mini dijes de personajes para personalizar aretes o llaveros.'],
+        ['aretes-fresas-colgantes','Aretes fresas colgantes',32000,'aretes','Aretes','disponible','productos-reales/producto-real-17.png','Porcelanicron y acero inoxidable.',['frutal','bestseller'],'Fresas colgantes con herraje tipo argolla.'],
+        ['aretes-fresas-lazo','Aretes fresas con lazo',35000,'aretes','Aretes','disponible','productos-reales/producto-real-18.png','Porcelanicron, cinta y acero inoxidable.',['frutal','lazo'],'Fresas con lazo blanco para un look coqueto.'],
+        ['aretes-verdes-con-flor','Aretes verdes con flor',36000,'aretes','Aretes','disponible','productos-reales/producto-real-19.png','Cuentas, porcelanicron y acero inoxidable.',['floral','verde'],'Cuentas verdes con flores blancas y detalles rojos.'],
+        ['aretes-corazones-fresa','Aretes corazones fresa',30000,'aretes','Aretes','disponible','productos-reales/producto-real-20.png','Porcelanicron y acero inoxidable.',['corazón','frutal'],'Corazones rosados con fresitas mini pintadas.'],
+        ['aretes-hojas-verdes','Aretes hojas verdes',32000,'aretes','Aretes','disponible','productos-reales/producto-real-21.png','Acrílico, cuentas y acero inoxidable.',['verde','natural'],'Hojitas translúcidas con gotitas colgantes.'],
+        ['aretes-gatitos-personalizados','Aretes gatitos personalizados',45000,'aretes','Aretes','por encargo','productos-reales/producto-real-22.png','Porcelanicron pintado y acero inoxidable.',['personalizable','mascotas'],'Gatitos personalizados en colores y caritas diferentes.'],
+        ['aretes-hojas-verdes-largas','Aretes hojas verdes largas',32000,'aretes','Aretes','disponible','productos-reales/producto-real-23.png','Acrílico, cuentas y acero inoxidable.',['natural','ligeros'],'Hojas verdes largas con caída delicada.'],
+        ['aretes-perlas-flores','Aretes perlas con flores',34000,'aretes','Aretes','disponible','productos-reales/producto-real-24.png','Perlas, dijes y acero inoxidable.',['perlas','floral'],'Perlas con flores plateadas para un acabado delicado.'],
+        ['aretes-lazos-rosados','Aretes lazos rosados',32000,'aretes','Aretes','disponible','productos-reales/producto-real-25.png','Porcelanicron, dijes y acero inoxidable.',['lazo','rosado'],'Lazos rosados con dijes plateados y brillo.'],
+        ['aretes-flores-rosadas-cadena','Aretes flores rosadas cadena',36000,'aretes','Aretes','disponible','productos-reales/producto-real-26.png','Porcelanicron, cuentas y acero inoxidable.',['floral','colgantes'],'Flores rosadas con cuentas colgantes en cadena.'],
+        ['aretes-honguitos-rojos','Aretes honguitos rojos',38000,'aretes','Aretes','disponible','productos-reales/producto-real-27.png','Porcelanicron y acero inoxidable.',['honguitos','bestseller'],'Honguitos rojos hechos a mano con mucho detalle.'],
+        ['aretes-corazones-ojo','Aretes corazones con ojo',34000,'aretes','Aretes','disponible','productos-reales/producto-real-28.png','Porcelanicron y acero inoxidable.',['corazón','rarito'],'Corazones rosados con ojitos amarillos y actitud divertida.'],
+        ['aretes-aguacates','Aretes aguacates',32000,'aretes','Aretes','disponible','productos-reales/producto-real-29.png','Porcelanicron y acero inoxidable.',['frutal','verde'],'Aguacates partidos con colores vivos.'],
+        ['aretes-flores-rosadas-mini','Aretes flores rosadas mini',26000,'aretes','Aretes','disponible','productos-reales/producto-real-30.png','Porcelanicron y topo de acero.',['mini','floral'],'Flores rosadas pequeñas para un detalle sutil.'],
+        ['aretes-flores-amarillas-mini','Aretes flores amarillas mini',26000,'aretes','Aretes','disponible','productos-reales/producto-real-31.png','Porcelanicron y topo de acero.',['mini','amarillo'],'Flores amarillas mini con centro brillante.'],
+        ['aretes-flores-verdes-mini','Aretes flores verdes mini',26000,'aretes','Aretes','disponible','productos-reales/producto-real-32.png','Porcelanicron y topo de acero.',['mini','verde'],'Flores verdes mini para combinar diario.'],
+        ['aretes-flores-azules-mini','Aretes flores azules mini',26000,'aretes','Aretes','disponible','productos-reales/producto-real-33.png','Porcelanicron y topo de acero.',['mini','azul'],'Flores azules pequeñas con centro amarillo.'],
+        ['aretes-corazones-azules','Aretes corazones azules',28000,'aretes','Aretes','disponible','productos-reales/producto-real-34.png','Porcelanicron y topo de acero.',['corazón','azul'],'Corazones azules con textura brillante.'],
+        ['aretes-mariposas-moradas','Aretes mariposas moradas',30000,'aretes','Aretes','disponible','productos-reales/producto-real-35.png','Porcelanicron y acero inoxidable.',['mariposa','morado'],'Mariposas moradas colgantes con brillo suave.'],
+        ['aretes-orquideas-fucsias','Aretes orquídeas fucsias',50000,'aretes','Aretes','disponible','productos-reales/producto-real-36.png','Porcelanicron y acero inoxidable.',['floral','statement'],'Orquídeas fucsias grandes modeladas a mano.'],
+        ['aretes-corazones-tropicales','Aretes corazones tropicales',38000,'aretes','Aretes','disponible','productos-reales/producto-real-37.png','Porcelanicron y acero inoxidable.',['corazón','tropical'],'Corazones con mezcla tropical de rosado y amarillo.'],
+        ['aretes-frutas-limon-naranja','Aretes frutas limón y naranja',30000,'aretes','Aretes','disponible','productos-reales/producto-real-38.png','Porcelanicron, cuentas y acero inoxidable.',['frutal','cítrico'],'Fruticas cítricas con cuentas amarillas.'],
+        ['aretes-cerezas-rojas','Aretes cerezas rojas',30000,'aretes','Aretes','disponible','productos-reales/producto-real-39.png','Porcelanicron y acero inoxidable.',['frutal','rojo'],'Cerecitas rojas con herraje tipo argolla.'],
+        ['aretes-arandanos-azules','Aretes arándanos azules',30000,'aretes','Aretes','disponible','productos-reales/producto-real-40.png','Porcelanicron y acero inoxidable.',['frutal','azul'],'Arándanos azules mini con acabado brillante.'],
+      ].map(p => ({
+        id: p[0],
+        name: p[1],
+        price: p[2],
+        category: p[3],
+        type: p[4],
+        status: p[5],
+        image: 'public/catalogo/' + p[6],
+        materials: p[7],
+        badges: p[8],
+        description: p[9],
+        time: p[5] === 'por encargo' ? '4 a 12 días hábiles' : p[5] === 'agotado' ? 'Próximo drop por confirmar' : 'Entrega inmediata según disponibilidad'
+      }));
+
+      const $ = (id) => document.getElementById(id);
+      const cop = (n) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(n);
+      const wa = (msg) => window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+      const els = {
+        menuToggle: $('menuToggle'), mainNav: $('mainNav'), searchTop: $('searchTop'), cartBtn: $('cartBtn'), count: $('count'),
+        cats: $('cats'), search: $('search'), category: $('category'), status: $('status'), price: $('price'), priceLabel: $('priceLabel'),
+        sort: $('sort'), clearFilters: $('clearFilters'), products: $('products'), resultCount: $('resultCount'), drawer: $('drawer'),
+        toolbarCount: $('toolbarCount'), activeFilters: $('activeFilters'),
+        closeCart: $('closeCart'), cartItems: $('cartItems'), shipping: $('shipping'), cartTotals: $('cartTotals'), goCheckout: $('goCheckout'),
+        cartWa: $('cartWa'), summary: $('summary'), summaryWa: $('summaryWa'), chatToggle: $('chatToggle'), chatPanel: $('chatPanel'),
+        closeChat: $('closeChat'), chatMessages: $('chatMessages'), chatForm: $('chatForm'), chatInput: $('chatInput'), footerChatLink: $('footerChatLink'), modalBack: $('modalBack'),
+        closeModal: $('closeModal'), modalImg: $('modalImg'), modalStatus: $('modalStatus'), modalName: $('modalName'), modalPrice: $('modalPrice'),
+        modalDesc: $('modalDesc'), modalMaterials: $('modalMaterials'), modalTime: $('modalTime'), modalNotes: $('modalNotes'), modalAdd: $('modalAdd'),
+        modalWa: $('modalWa'), customForm: $('customForm'), checkoutForm: $('checkoutForm'), pay: $('pay'), acceptPolicies: $('acceptPolicies'),
+        confirmBox: $('confirmBox'), checkoutMobileSubmit: document.querySelector('.checkout-mobile-submit')
+      };
+      const routes = ['inicio', 'catalogo', 'personalizados', 'checkout', 'sobre', 'faq', 'politicas'];
+
+      function normalizeRoute(hash) {
+        const route = (hash || '#inicio').replace('#', '');
+        if (route === 'categorias') return 'inicio';
+        return routes.includes(route) ? route : 'inicio';
+      }
+
+      function showPage(route = normalizeRoute(location.hash), shouldScroll = true) {
+        document.body.dataset.page = route;
+        document.querySelectorAll('[data-page]').forEach((page) => {
+          page.classList.toggle('active', page.dataset.page === route);
+        });
+        document.querySelectorAll('[data-route]').forEach((link) => {
+          link.classList.toggle('active', link.dataset.route === route);
+          link.setAttribute('aria-current', link.dataset.route === route ? 'page' : 'false');
+        });
+        els.mainNav.classList.remove('open');
+        if (route === 'faq') {
+          els.chatPanel.classList.remove('open');
+          els.chatToggle.setAttribute('aria-expanded', 'false');
+        }
+        if (shouldScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      let cart = JSON.parse(localStorage.getItem('sapitos-premium-cart') || '[]').map((item) => ({ ...item, key: item.key || `${item.id}::${item.notes || ''}` }));
+      let current = null;
+      let currentQuick = 'todo';
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+      function initSapitoCursor() {
+        if (reducedMotion || coarsePointer) return;
+        let lastTrail = 0;
+        const maxTrail = 8;
+        document.addEventListener('pointermove', (event) => {
+          const now = performance.now();
+          if (now - lastTrail < 140) return;
+          lastTrail = now;
+          const existing = document.querySelectorAll('.cursor-sapito');
+          if (existing.length >= maxTrail) existing[0].remove();
+          const sapito = document.createElement('span');
+          sapito.className = 'cursor-sapito';
+          sapito.style.left = `${event.clientX}px`;
+          sapito.style.top = `${event.clientY}px`;
+          sapito.style.rotate = `${Math.random() * 16 - 8}deg`;
+          document.body.appendChild(sapito);
+          window.setTimeout(() => sapito.remove(), 1250);
+        }, { passive: true });
+      }
+
+      if (reducedMotion) {
+        document.querySelectorAll('.reel-card video').forEach((video) => {
+          video.removeAttribute('autoplay');
+          video.pause();
+        });
+      }
+
+      function saveCart() {
+        localStorage.setItem('sapitos-premium-cart', JSON.stringify(cart));
+        renderCart();
+      }
+
+      function renderCategories() {
+        els.cats.innerHTML = catData.map((cat) => `
+          <article class="category-card">
+            <img src="public/catalogo/${cat[2]}" alt="${cat[1]}" />
+            <h3>${cat[1]}</h3>
+            <p>${cat[3]}</p>
+            <a class="mini-link" href="#catalogo" onclick="category.value='${cat[0]}'; renderProducts();">Ver piezas</a>
+          </article>
+        `).join('');
+        els.category.innerHTML = '<option value="todos">Todas</option>' + catData.map((cat) => `<option value="${cat[0]}">${cat[1]}</option>`).join('');
+      }
+
+      function renderProducts() {
+        els.priceLabel.textContent = `Hasta ${cop(Number(els.price.value))}`;
+        const query = `${els.search.value} ${els.searchTop.value}`.toLowerCase().trim();
+        let list = products
+          .filter((p) => els.category.value === 'todos' || p.category === els.category.value)
+          .filter((p) => els.status.value === 'todos' || p.status === els.status.value)
+          .filter((p) => p.price <= Number(els.price.value))
+          .filter((p) => !query || `${p.name} ${p.description} ${p.type} ${p.badges.join(' ')}`.toLowerCase().includes(query))
+          .filter((p) => {
+            if (currentQuick === 'todo') return true;
+            if (['aretes', 'collares', 'llaveros'].includes(currentQuick)) return p.category === currentQuick;
+            if (currentQuick === 'disponible') return p.status === 'disponible';
+            if (currentQuick === 'bestseller') return p.badges.includes('bestseller');
+            if (currentQuick === 'nuevo') return products.indexOf(p) < 12;
+            return true;
+          });
+
+        if (els.sort.value === 'low') list.sort((a, b) => a.price - b.price);
+        if (els.sort.value === 'high') list.sort((a, b) => b.price - a.price);
+
+        els.resultCount.textContent = `${list.length} piezas encontradas`;
+        els.toolbarCount.textContent = `${list.length} resultados`;
+        renderActiveFilters(query);
+        if (!list.length) {
+          els.products.innerHTML = `
+            <div class="empty-state">
+              <p class="eyebrow">Sin resultados</p>
+              <h3>No encontramos esa pieza Sapitos.</h3>
+              <p>Prueba limpiar filtros o pedir una versión personalizada por WhatsApp.</p>
+              <button class="button dark" type="button" onclick="clearAllFilters()">Limpiar filtros</button>
+            </div>`;
+          return;
+        }
+
+        els.products.innerHTML = list.map((p) => `
+          <article class="product-card ${p.status === 'agotado' ? 'soldout' : ''}">
+            ${p.status === 'agotado' ? '<span class="soldout-tag">Agotado</span>' : ''}
+            <img src="${p.image}" alt="${p.name}" />
+            <div class="product-body">
+              <div class="meta"><span>${p.type}</span><span class="status ${p.status === 'por encargo' ? 'por' : p.status}">${p.status}</span></div>
+              <h3 class="product-title">${p.name}</h3>
+              <strong class="price">${cop(p.price)}</strong>
+              <p class="product-desc">${p.description}</p>
+              <div class="product-badges">${p.badges.map((badge) => `<span>${badge}</span>`).join('')}</div>
+            </div>
+            <div class="card-actions">
+              <button class="button dark" type="button" onclick="${p.status === 'agotado' ? `notifySoldOut('${p.id}')` : `addToCart('${p.id}')`}">${p.status === 'agotado' ? 'Avísame' : 'Agregar'}</button>
+              <button class="button ghost" type="button" onclick="openModal('${p.id}')">Ver detalle</button>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      function clearAllFilters() {
+        els.search.value = '';
+        els.searchTop.value = '';
+        els.category.value = 'todos';
+        els.status.value = 'todos';
+        els.price.value = 80000;
+        els.sort.value = 'recent';
+        setQuickFilter('todo', false);
+        renderProducts();
+      }
+
+      function setQuickFilter(value, shouldRender = true) {
+        currentQuick = value;
+        document.querySelectorAll('.quick-chip').forEach((chip) => {
+          chip.classList.toggle('active', chip.dataset.quick === currentQuick);
+        });
+        if (['aretes', 'collares', 'llaveros'].includes(value)) {
+          els.category.value = value;
+        } else if (value === 'todo') {
+          els.category.value = 'todos';
+          els.status.value = 'todos';
+        } else if (value === 'disponible') {
+          els.status.value = 'disponible';
+        }
+        if (shouldRender) renderProducts();
+      }
+
+      function renderActiveFilters(query) {
+        const chips = [];
+        const categoryName = catData.find((cat) => cat[0] === els.category.value)?.[1];
+        if (query) chips.push(`Búsqueda: ${query.split(' ').filter(Boolean).slice(0, 3).join(' ')}`);
+        if (categoryName) chips.push(categoryName);
+        if (els.status.value !== 'todos') chips.push(els.status.value);
+        if (Number(els.price.value) < 80000) chips.push(`Hasta ${cop(Number(els.price.value))}`);
+        if (els.sort.value !== 'recent') chips.push(els.sort.value === 'low' ? 'Menor precio' : 'Mayor precio');
+        if (!['todo', els.category.value].includes(currentQuick)) {
+          const label = document.querySelector(`.quick-chip[data-quick="${currentQuick}"]`)?.textContent;
+          if (label) chips.push(label);
+        }
+        els.activeFilters.innerHTML = chips.length
+          ? chips.map((chip) => `<span class="filter-chip">${chip}</span>`).join('')
+          : '<span class="filter-chip">Todo el catálogo</span>';
+      }
+
+      function getProduct(id) { return products.find((p) => p.id === id); }
+
+      function addToCart(id, notes = '') {
+        const product = typeof id === 'string' ? getProduct(id) : id;
+        if (!product) return;
+        if (product.status === 'agotado') {
+          notifySoldOut(product.id);
+          return;
+        }
+        const key = `${product.id}::${notes || ''}`;
+        const existing = cart.find((item) => item.key === key);
+        if (existing) existing.qty += 1;
+        else cart.push({ ...product, qty: 1, notes, key });
+        saveCart();
+        els.drawer.classList.add('open');
+      }
+
+      function notifySoldOut(id) {
+        const product = getProduct(id);
+        wa(`Hola Sapitos, me avisan cuando vuelva ${product.name} o si pueden hacer algo parecido.`);
+      }
+
+      function renderCart() {
+        els.count.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+        if (!cart.length) {
+          els.cartItems.innerHTML = `<div class="empty-cart"><h3>Tu carrito está esperando algo cute.</h3><p>Agrega una pieza lista o cotiza una personalizada.</p><a class="button dark" href="#catalogo" onclick="drawer.classList.remove('open')">Ver catálogo</a></div>`;
+        } else {
+          els.cartItems.innerHTML = cart.map((item, index) => `
+            <article class="cart-item">
+              <img src="${item.image}" alt="${item.name}" />
+              <div>
+                <h3>${item.name}</h3>
+                ${item.notes ? `<p class="muted">Notas: ${item.notes}</p>` : ''}
+                <span>${cop(item.price)}</span>
+                <div class="qty">
+                  <button type="button" onclick="changeQty(${index}, -1)">-</button>
+                  <strong>${item.qty}</strong>
+                  <button type="button" onclick="changeQty(${index}, 1)">+</button>
+                </div>
+              </div>
+              <button class="remove" type="button" onclick="removeItem(${index})">Eliminar</button>
+            </article>
+          `).join('');
+        }
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        const shipping = Number(els.shipping.value || 0);
+        const total = subtotal + shipping;
+        els.cartTotals.innerHTML = `
+          <p class="total-row"><span>Subtotal</span><strong>${cop(subtotal)}</strong></p>
+          <p class="total-row"><span>Envío</span><strong>${cop(shipping)}</strong></p>
+          <p class="total-row total"><span>Total</span><strong>${cop(total)}</strong></p>
+        `;
+        els.summary.innerHTML = cart.length
+          ? `<div class="summary-list">${cart.map((item) => `
+              <article class="summary-item">
+                <img src="${item.image}" alt="${item.name}" />
+                <div>
+                  <h4>${item.name}</h4>
+                  <span>Cantidad: ${item.qty}</span>
+                </div>
+                <strong>${cop(item.price * item.qty)}</strong>
+              </article>
+            `).join('')}</div>
+            <p class="total-row"><span>Subtotal</span><strong>${cop(subtotal)}</strong></p>
+            <p class="total-row"><span>Envío</span><strong>${cop(shipping)}</strong></p>
+            <p class="total-row total"><span>Total</span><strong>${cop(total)}</strong></p>`
+          : '<div class="summary-empty">Tu carrito está esperando sapitos 🐸</div>';
+        updateCheckoutButtons();
+      }
+
+      function changeQty(index, delta) {
+        if (!cart[index]) return;
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) cart.splice(index, 1);
+        saveCart();
+      }
+      function removeItem(index) {
+        cart.splice(index, 1);
+        saveCart();
+      }
+
+      function openModal(id) {
+        current = getProduct(id);
+        if (!current) return;
+        els.modalNotes.value = '';
+        els.modalImg.src = current.image;
+        els.modalImg.alt = current.name;
+        els.modalStatus.textContent = current.status;
+        els.modalStatus.className = 'status ' + (current.status === 'por encargo' ? 'por' : current.status);
+        els.modalName.textContent = current.name;
+        els.modalPrice.textContent = cop(current.price);
+        els.modalDesc.textContent = current.description;
+        els.modalMaterials.textContent = current.materials;
+        els.modalTime.textContent = current.time;
+        els.modalAdd.textContent = current.status === 'agotado' ? 'Avísame cuando vuelva' : 'Agregar al carrito';
+        els.modalBack.classList.add('open');
+      }
+
+      function cartMessage() {
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        const shipping = Number(els.shipping.value || 0);
+        return [
+          'Hola Sapitos, quiero confirmar este pedido:',
+          ...cart.map((item) => `- ${item.name} x${item.qty}: ${cop(item.price * item.qty)}${item.notes ? ` (${item.notes})` : ''}`),
+          `Envío: ${cop(shipping)}`,
+          `Total: ${cop(subtotal + shipping)}`
+        ].join('\n');
+      }
+
+      function checkoutMessage(reference) {
+        const form = new FormData(els.checkoutForm);
+        return [
+          cartMessage(),
+          '',
+          `Referencia: ${reference}`,
+          `Nombre: ${form.get('fullName')}`,
+          `Email: ${form.get('email')}`,
+          `WhatsApp: ${form.get('whatsapp')}`,
+          `Ciudad: ${form.get('city')}`,
+          `Dirección: ${form.get('address')}`,
+          `Entrega: ${form.get('delivery')}`,
+          `Pago: ${form.get('payment')}`,
+          `Notas: ${form.get('notes') || 'Sin notas'}`
+        ].join('\n');
+      }
+
+      function checkoutReady() {
+        return cart.length > 0 && els.checkoutForm.checkValidity();
+      }
+
+      function updateCheckoutButtons() {
+        const ready = checkoutReady();
+        els.summaryWa.disabled = !ready;
+        if (els.checkoutMobileSubmit) els.checkoutMobileSubmit.disabled = !ready;
+      }
+
+      function confirmCheckout() {
+        if (!cart.length) {
+          els.confirmBox.style.display = 'block';
+          els.confirmBox.textContent = 'Agrega al menos una pieza al carrito antes de confirmar.';
+          return;
+        }
+        if (!els.checkoutForm.reportValidity()) {
+          updateCheckoutButtons();
+          return;
+        }
+        const reference = 'SAP-' + String(Date.now()).slice(-7);
+        els.confirmBox.style.display = 'block';
+        els.confirmBox.innerHTML = `Pedido listo para confirmar.<br>Referencia ${reference}. Se abrirá WhatsApp con el resumen completo.`;
+        wa(checkoutMessage(reference));
+      }
+
+      function addChatMessage(text, from = 'bot') {
+        const message = document.createElement('p');
+        message.className = `chat-message${from === 'user' ? ' user' : ''}`;
+        message.textContent = text;
+        els.chatMessages.appendChild(message);
+        els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+      }
+
+      function botReply(text) {
+        const value = text.toLowerCase();
+        if (value.includes('catálogo') || value.includes('catalogo') || value.includes('comprar')) {
+          addChatMessage('Te llevo al catálogo para que filtres por categoría, precio y disponibilidad.');
+          location.hash = '#catalogo';
+          return;
+        }
+        if (value.includes('personal') || value.includes('idea') || value.includes('cotizar')) {
+          addChatMessage('Perfecto. Abro el formulario para contar tu idea y preparar la cotización.');
+          location.hash = '#personalizados';
+          return;
+        }
+        if (value.includes('carrito') || value.includes('pedido')) {
+          addChatMessage('Abro tu carrito para que revises cantidades, envío y total.');
+          els.drawer.classList.add('open');
+          return;
+        }
+        if (value.includes('envío') || value.includes('envio') || value.includes('entrega')) {
+          addChatMessage('Hacemos envíos nacionales. El costo final se confirma según ciudad y método de entrega.');
+          return;
+        }
+        if (value.includes('pago') || value.includes('wompi') || value.includes('nequi') || value.includes('daviplata')) {
+          addChatMessage('Puedes confirmar pago manual por ahora. El checkout queda preparado para Wompi, Mercado Pago, PSE y tarjeta.');
+          location.hash = '#checkout';
+          return;
+        }
+        addChatMessage('Puedo ayudarte a ver catálogo, personalizar una pieza, revisar carrito, envíos o pagos. Escríbeme qué necesitas.');
+      }
+
+      els.menuToggle.addEventListener('click', () => els.mainNav.classList.toggle('open'));
+      els.mainNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => els.mainNav.classList.remove('open')));
+      window.addEventListener('hashchange', () => showPage());
+      [els.search, els.searchTop, els.category, els.status, els.price, els.sort].forEach((el) => el.addEventListener('input', renderProducts));
+      [els.category, els.status].forEach((el) => el.addEventListener('change', () => {
+        currentQuick = 'todo';
+        document.querySelectorAll('.quick-chip').forEach((chip) => chip.classList.toggle('active', chip.dataset.quick === 'todo'));
+        renderProducts();
+      }));
+      document.querySelectorAll('.quick-chip').forEach((chip) => {
+        chip.addEventListener('click', () => setQuickFilter(chip.dataset.quick || 'todo'));
+      });
+      els.clearFilters.addEventListener('click', clearAllFilters);
+      els.cartBtn.addEventListener('click', () => els.drawer.classList.add('open'));
+      els.closeCart.addEventListener('click', () => els.drawer.classList.remove('open'));
+      els.goCheckout.addEventListener('click', () => els.drawer.classList.remove('open'));
+      els.shipping.addEventListener('input', renderCart);
+      els.cartWa.addEventListener('click', () => wa(cartMessage()));
+      els.summaryWa.addEventListener('click', confirmCheckout);
+      els.chatToggle.addEventListener('click', () => {
+        const isOpen = els.chatPanel.classList.toggle('open');
+        els.chatToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      els.closeChat.addEventListener('click', () => {
+        els.chatPanel.classList.remove('open');
+        els.chatToggle.setAttribute('aria-expanded', 'false');
+      });
+      els.footerChatLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        els.chatPanel.classList.add('open');
+        els.chatToggle.setAttribute('aria-expanded', 'true');
+      });
+      document.querySelectorAll('[data-chat]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const text = button.dataset.chat;
+          addChatMessage(text, 'user');
+          botReply(text);
+        });
+      });
+      els.chatForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const text = els.chatInput.value.trim();
+        if (!text) return;
+        addChatMessage(text, 'user');
+        els.chatInput.value = '';
+        botReply(text);
+      });
+      els.closeModal.addEventListener('click', () => els.modalBack.classList.remove('open'));
+      els.modalBack.addEventListener('click', (event) => { if (event.target === els.modalBack) els.modalBack.classList.remove('open'); });
+      els.modalAdd.addEventListener('click', () => current && addToCart(current, els.modalNotes.value.trim()));
+      els.modalWa.addEventListener('click', () => current && wa(`Hola Sapitos, quiero pedir ${current.name}\nPrecio: ${cop(current.price)}\nNotas: ${els.modalNotes.value || 'Sin notas'}`));
+      els.customForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = new FormData(els.customForm);
+        wa(`Hola Sapitos, quiero una solicitud personalizada:\nNombre: ${form.get('name')}\nWhatsApp: ${form.get('phone')}\nTipo: ${form.get('type')}\nIdea: ${form.get('idea')}\nFecha: ${form.get('date') || 'Sin fecha definida'}`);
+      });
+      document.querySelectorAll('.chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          if (chip.disabled) return;
+          document.querySelectorAll('.chip').forEach((item) => item.classList.remove('active'));
+          chip.classList.add('active');
+          els.pay.value = chip.dataset.pay || els.pay.value;
+          updateCheckoutButtons();
+        });
+      });
+      document.querySelectorAll('.faq-card').forEach((card) => {
+        card.addEventListener('toggle', () => {
+          if (!card.open) return;
+          document.querySelectorAll('.faq-card').forEach((item) => {
+            if (item !== card) item.open = false;
+          });
+        });
+      });
+      els.checkoutForm.addEventListener('input', updateCheckoutButtons);
+      els.checkoutForm.addEventListener('change', updateCheckoutButtons);
+      els.checkoutForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        confirmCheckout();
+      });
+
+      renderCategories();
+      renderProducts();
+      renderCart();
+      showPage(normalizeRoute(location.hash), false);
+      initSapitoCursor();
+    </script>
+  </body>
+</html>
